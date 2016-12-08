@@ -75,6 +75,35 @@ public class PersonneMapper {
 		rs.next();
 		return rs.getInt(1);	
 	}
+	
+	
+	
+	//Retourner une personne a partir de son compte Personnel 
+	public Personne FindByComptePers(String ComptePers) throws SQLException {
+		String req = "SELECT NomPers,PrenomPers,PasswordPers FROM Personne WHERE "
+				+ "NomComptePers=?";
+		PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+		ps.setString(1,ComptePers);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		Personne p =new Utilisateur(ComptePers,rs.getString(1),rs.getString(2),rs.getString(3));
+		return p;
+	}
+	
+	
+	//modifier le nom , Prenom et mot de passe d'une personne 
+	public void UpdatePersonne(Personne p)  throws SQLException {
+		String req = "UPDATE Personne SET NomPers= ? , PrenomPers =? ,PasswordPers =? "
+				+ "WHERE NomComptePers=?";
+		PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+		ps.setString(1,p.getNomPers());
+		ps.setString(2,p.getPrenomPers());
+		ps.setString(3,p.getPasswordPers());
+		ps.setString(4,p.getNomComptePers());
+		ps.executeUpdate();
+			}
+	
+	
 
 }
 

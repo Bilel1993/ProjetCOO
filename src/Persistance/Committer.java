@@ -12,7 +12,7 @@ public  class Committer extends Visiteur {
 		    	/* ecrires fonction d'updates ici */
 		    }
 		    public void visiter (Personne p) throws SQLException{
-		    	/* Pareil */
+		    	   PersonneMapper.getInstance().UpdatePersonne(p);
 		    }
 }
 

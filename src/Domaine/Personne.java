@@ -1,10 +1,16 @@
 package Domaine;
+import java.sql.SQLException;
 import java.util.*;
 
+import Service.IDomainObject;
+import Service.Observateur;
+import Service.Visiteur;
 
 
 
-public abstract class Personne {
+
+public abstract class Personne implements IDomainObject{
+	 private List<Observateur> obs;
 	String NomComptePers;
 	String NomPers;
 	String PrenomPers;
@@ -12,6 +18,15 @@ public abstract class Personne {
 	ArrayList<CentreInteret> ListeCentreInteretPers = new ArrayList<CentreInteret>();
 	ArrayList<Personne> ListeAmisPers = new ArrayList<Personne>();
 	Boolean isModerateur= false;
+	
+	 public void accepter(Visiteur v) {
+	        try {
+				v.visiter(this);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    }
 	
 	public Personne(String nomComptePers, String nomPers, String prenomPers,
 			String passwordPers) {
@@ -84,10 +99,17 @@ public abstract class Personne {
 	}
 	
 	
-	
-	
-	
-	
-	
 
+	public void add(Observateur o) {
+	        obs.add(o);
+	    }
+
+	    /**
+	     * On notifie l'observateur que l'on à fait un changement
+	     */
+	    public void notifier() {
+	        for (Observateur o : obs)
+	            o.action(this);
+	    }
+	
 }
