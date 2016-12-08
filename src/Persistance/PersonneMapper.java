@@ -50,7 +50,7 @@ public class PersonneMapper {
 			ps.executeUpdate();
 		}
 	
-	
+	// Verifie si une personne se connecte avec des identifiants présent en BDD
 	public int IsConnected(String NomCompte , char[] cs) throws SQLException {
 		String req = "SELECT count(*) FROM Personne WHERE NomComptePers =? and PasswordPers=?";
 		DBConfig.getInstance();
@@ -63,6 +63,7 @@ public class PersonneMapper {
 		return rs.getInt(1);	
 	}
      
+	//Verifie si l'administrateur est admin ou non ; Renvoie 0 si non , 1 si oui
 	public int IsAdmin(String NomCompte , char[] cs) throws SQLException {
 		String req = "SELECT isAdmin FROM Personne WHERE NomComptePers =? and PasswordPers=?";
 		DBConfig.getInstance();

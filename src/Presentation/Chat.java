@@ -21,7 +21,6 @@ public class Chat extends JFrame implements ActionListener  {
 	    JTextField MessageEnvoyer;
 	    JButton Envoyer = new JButton("Envoyer");
         
-        
 
 	    public Chat() throws Exception { 
 	    	Envoyer.addActionListener(this);

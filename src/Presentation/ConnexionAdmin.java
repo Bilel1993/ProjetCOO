@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 
 
 @SuppressWarnings({ "serial", "unused" })
-public class ConnectionAdmin extends JFrame implements ActionListener  { 
+public class ConnexionAdmin extends JFrame implements ActionListener  { 
 	Inscription im;
 	Chat chat;
     JPanel PAdmin ;   
@@ -25,7 +25,7 @@ public class ConnectionAdmin extends JFrame implements ActionListener  {
     JButton Chat = new JButton("Passer en Mode Chat");
     
 
-		    public ConnectionAdmin() throws Exception { 
+		    public ConnexionAdmin() throws Exception { 
 		    	Creation.addActionListener(this);
 		    	Chat.addActionListener(this);
 		    	PAdmin= new JPanel(new FlowLayout());
@@ -67,9 +67,6 @@ public class ConnectionAdmin extends JFrame implements ActionListener  {
 			
 			}
 			
-			public static void main(String[] args) throws Exception {
-				ConnectionAdmin connectAdmin = new ConnectionAdmin();
-			}
 }
 
 			
