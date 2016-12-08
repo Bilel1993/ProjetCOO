@@ -20,6 +20,8 @@ public class Inscription extends JPanel implements ActionListener  {
     JTextField pseudo;
     JLabel prenomLabel;
     JTextField prenom;
+    JLabel Message;
+    
     
     //Jbutton
     JButton Boutoninscription = new JButton("inscription");
@@ -74,6 +76,11 @@ public class Inscription extends JPanel implements ActionListener  {
     	pseudo.setSize(150,25);
     	pseudo.setLocation(200,207);
     	
+    	//Ajout d'un message 
+    	Message = new JLabel();
+    	Message.setSize(300,25);
+    	Message.setLocation(180,330);
+		
     	//Bouton this
     	Boutoninscription.setSize(150,25);
     	Boutoninscription.setLocation(200,300);
@@ -90,26 +97,36 @@ public class Inscription extends JPanel implements ActionListener  {
     	this.add(PseudoLabel);
     	this.add(pseudo);
     	this.add(Boutoninscription);
+    	this.add(Message);
     	
     }; 
-		  
-
-
+	
 	public void actionPerformed(ActionEvent e) {
 		PersonneMapper PM = new PersonneMapper();
 		//Si on clique sur Inscription
 		if (e.getActionCommand().equals("inscription"))
 			try {
 				//on verifie que le pseudo n existe pas dans la BDD
-				if (PM.IsExistNomComptePers(pseudo.getText()) > 0)
+				if (PM.IsExistNomComptePers(pseudo.getText()) > 0){
 					//si il existe : erreur
-					System.out.println("Erreur, le Nom de compte est deja pris !");
-				else{
-					//Sinon, on cree la personne, et on l insert dans le mapper
-					Personne p=new Utilisateur(pseudo.getText(),nom.getText(),
+					Message.setText("Erreur,le Nom de compte est deja pris !");
+					Message.setForeground(Color.red);
+				}else{
+					//Si les champs sont pas remplis
+					if(pseudo.getText().length() == 0 || nom.getText().length() == 0 ||
+							motdepasse.getPassword().length == 0 || prenom.getText().length() == 0){
+						//Alors erreur
+						Message.setText("Erreur,les champs ne sont pas tous remplis !");
+						Message.setForeground(Color.red);
+					}else{
+						//Sinon, on cree la personne, et on l insert dans le mapper
+						Personne p=new Utilisateur(pseudo.getText(),nom.getText(),
 							prenom.getText(),new String(motdepasse.getPassword()));
-					PM.insert(p);
-					}
+						PM.insert(p);
+						Message.setText("Succes !");
+						Message.setForeground(Color.green);
+						}
+				}
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}

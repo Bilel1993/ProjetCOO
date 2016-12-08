@@ -1,12 +1,9 @@
 package Presentation;
 
 
-import Domaine.*;
 import Persistance.PersonneMapper;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import javax.swing.*;
 import java.awt.*;
 

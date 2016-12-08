@@ -13,8 +13,7 @@ public class Suppression extends JPanel implements ActionListener  {
 	JLabel Description;
 	JLabel rechercherLabel;
     JTextField rechercher;
-    JLabel Erreur;
-    JLabel Confirmation;
+    JLabel Message;
     
     //Jbutton
     JButton Boutonrechercher = new JButton("Rechercher");
@@ -36,7 +35,7 @@ public class Suppression extends JPanel implements ActionListener  {
         
     	//Rechercher un utilisateur
     	rechercherLabel = new JLabel("Rechercher pseudo :",JLabel.CENTER);
-    	rechercherLabel.setSize(100,100);
+    	rechercherLabel.setSize(120,100);
     	rechercherLabel.setLocation(30,50);
     	rechercher = new JTextField(); 
     	rechercher.setColumns(20);
@@ -51,8 +50,13 @@ public class Suppression extends JPanel implements ActionListener  {
     	
     	//Bouton Suppression
     	Boutonsupprimer.setSize(150,25);
-    	Boutonsupprimer.setLocation(200,400);
+    	Boutonsupprimer.setLocation(200,300);
     	Boutonsupprimer.addActionListener(this);
+    	
+    	
+    	//Ajout d'un message 
+    	Message = new JLabel();
+
     	
     	//Ajout au Panel 
     	this.add(Description);
@@ -60,22 +64,10 @@ public class Suppression extends JPanel implements ActionListener  {
     	this.add(rechercher);
     	this.add(Boutonrechercher);
     	this.add(Boutonsupprimer);
+    	this.add(Message);
+ 
     	
-    	//Ajout d'une erreur  Non visible pour le moment
-    	Erreur = new JLabel("Erreur, ce compte n'existe pas",JLabel.CENTER);
-    	Erreur.setForeground(Color.RED);
-    	Erreur.setSize(250,25);
-    	Erreur.setLocation(75,200);
-    	Erreur.setVisible(false);
-    	
-    	//Ajout d'un message de confirmation de suppression
-    	Confirmation = new JLabel("Voulez-vous vraiment supprimer ce compte?",JLabel.CENTER);
-    	Confirmation.setForeground(Color.BLUE);
-    	Confirmation.setSize(250,25);
-    	Confirmation.setLocation(75,400);
-    	Confirmation.setVisible(false);
-    	
-    }; 
+      }; 
 
 	public void actionPerformed(ActionEvent e) {
 		PersonneMapper PM = new PersonneMapper();
@@ -85,12 +77,18 @@ public class Suppression extends JPanel implements ActionListener  {
 				//on verifie que le pseudo n existe pas dans la BDD
 				if (PM.IsExistNomComptePers(rechercher.getText()) > 0){
 					//on confirme la suppression du compte
-					Confirmation.setText("Voulez-vous vraiment supprimer ce compte?");
-					Confirmation.setVisible(true);
+					Message.setText("Voulez-vous vraiment supprimer ce compte?");
+				 	Message.setForeground(Color.BLUE);
+			    	Message.setSize(300,25);
+			    	Message.setLocation(160,340);
+					Message.setVisible(true);
 				}else{
 					//Sinon, il y a une erreur
-					Erreur.setText("Erreur, ce compte n'existe pas");
-					Erreur.setVisible(true);
+					Message.setText("Erreur, ce compte n'existe pas");
+				 	Message.setForeground(Color.RED);
+			    	Message.setSize(250,25);
+			    	Message.setLocation(175,240);
+					Message.setVisible(true);
 					}
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -102,7 +100,12 @@ public class Suppression extends JPanel implements ActionListener  {
 				if (PM.IsExistNomComptePers(rechercher.getText()) > 0){
 					Personne p =PM.FindByComptePers(rechercher.getText());
 					PM.delete(p);
-					System.out.println("Compte supprimé :)");
+					//on confirme la suppression du compte
+					Message.setText("Compte supprimé ! :) ");
+				 	Message.setForeground(Color.green);
+			    	Message.setSize(300,25);
+			    	Message.setLocation(190,340);
+					Message.setVisible(true);
 				}
 			}catch (SQLException e2){
 				e2.printStackTrace();
