@@ -56,7 +56,7 @@ import Persistance.PersonneMapper;
 		    	motdepasse1 = new JLabel("Mot de passe ",JLabel.CENTER);
 		    	motdepasse1.setSize(170,100);
 		    	motdepasse1.setLocation(22,50);
-		    	motdepasse = new JTextField(); 
+		    	motdepasse = new JPasswordField(); 
 		    	motdepasse.setColumns(20);
 		    	motdepasse.setSize(150,25);
 		    	motdepasse.setLocation(200,87);

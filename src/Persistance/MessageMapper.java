@@ -1,10 +1,6 @@
-package Persistence;
-
-
+package Persistance;
 import java.sql.*;
-
 import Domaine.*;
-import Persistence.DBConfig;
 
 	public class MessageMapper {
 		static PersonneMapper inst;
@@ -21,7 +17,7 @@ import Persistence.DBConfig;
 			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
 			ps.setInt(1, m.getIdMessage());
 			ps.setInt(2, m.getIdPersonne());
-			ps.setString(3,  m.getMessageReçu());
+			ps.setString(3,  m.getMessageRecu());
 			ps.executeUpdate();
 		}
 		

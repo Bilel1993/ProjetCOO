@@ -54,7 +54,7 @@ public class PersonneMapper {
 	public int IsConnected(String NomCompte , char[] cs) throws SQLException {
 		String req = "SELECT count(*) FROM Personne WHERE NomComptePers =? and PasswordPers=?";
 		DBConfig.getInstance();
-		String mdp = Character.toString(cs);
+		String mdp = new String(cs);
 		PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
 		ps.setString(1,NomCompte);
 		ps.setString(2,mdp);
@@ -63,12 +63,13 @@ public class PersonneMapper {
 		return rs.getInt(1);	
 	}
      
-	public int IsAdmin(String NomCompte , String MotDePasse) throws SQLException {
+	public int IsAdmin(String NomCompte , char[] cs) throws SQLException {
 		String req = "SELECT isAdmin FROM Personne WHERE NomComptePers =? and PasswordPers=?";
 		DBConfig.getInstance();
+		String mdp = new String(cs);
 		PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
 		ps.setString(1,NomCompte);
-		ps.setString(2,MotDePasse);
+		ps.setString(2,mdp);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		return rs.getInt(1);	

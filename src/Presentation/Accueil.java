@@ -52,9 +52,7 @@ public class Accueil extends JFrame implements ActionListener  {
 					e1.printStackTrace();
 				}
 				}
-		public static void main(String[] args) throws Exception {
-			Accueil affImage = new Accueil();
-		}
+		
 	    }
 		
 	

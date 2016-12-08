@@ -2,10 +2,7 @@ package Persistance;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import Service.IDomainObject;
-import Service.Observateur;
-import Service.Visiteur;
+import Service.*;
 
 // But: memoriser la liste des objets ayant besoin d'un update en BD
 
@@ -29,6 +26,8 @@ public class UnitOfWork implements Observateur {
         System.out.println("UOW.action(): Enregistrer l'objet dans la liste des objets modifiés");
         dirty.add(o);
     }
+    
+    
     public void commit() {
         Visiteur v = new Committer();
         for (IDomainObject o : dirty) {

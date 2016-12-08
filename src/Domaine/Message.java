@@ -3,13 +3,12 @@ package Domaine;
 public class Message {
 	int idMessage;
 	int idPersonne;
-	String messageReçu;
+	String messageRecu;
 	
-	public Message(int idMessage, int idPersonne, String messageReçu) {
-		super();
+	public Message(int idMessage, int idPersonne, String messageRecu) {
 		this.idMessage = idMessage;
 		this.idPersonne = idPersonne;
-		this.messageReçu = messageReçu;
+		this.messageRecu = messageRecu;
 	}
 
 	public int getIdMessage() {
@@ -28,12 +27,12 @@ public class Message {
 		this.idPersonne = idPersonne;
 	}
 
-	public String getMessageReçu() {
-		return messageReçu;
+	public String getMessageRecu() {
+		return messageRecu;
 	}
 
-	public void setMessageReçu(String messageReçu) {
-		this.messageReçu = messageReçu;
+	public void setMessageRecu(String messageRecu) {
+		this.messageRecu = messageRecu;
 	}
 
 	

@@ -1,26 +1,15 @@
 package Presentation;
-import Domaine.Personne;
-import Domaine.Utilisateur;
+import Domaine.*;
 import Persistance.PersonneMapper;
-	
-import javax.swing.JButton;
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Stack;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.*;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import javax.swing.JPanel;
-
+@SuppressWarnings("serial")
 public class Inscription extends JFrame implements ActionListener  { 
 	JLabel nom1;
     JLabel motdepasse1;
@@ -101,7 +90,7 @@ public class Inscription extends JFrame implements ActionListener  {
 				else{
 					//Sinon, on cree la personne, et on l insert dans le mapper
 					Personne p=new Utilisateur(pseudo.getText(),nom.getText(),
-							prenom.getText(),motdepasse.getText());
+							prenom.getText(),new String(motdepasse.getPassword()));
 					PM.insert(p);
 					}
 			} catch (SQLException e1) {
@@ -110,7 +99,7 @@ public class Inscription extends JFrame implements ActionListener  {
 				
 			System.out.println(nom.getText());
 			System.out.println(prenom.getText());
-			System.out.println(motdepasse.getText());
+			System.out.println(motdepasse.getPassword());
 			System.out.println(pseudo.getText());
 
     }
