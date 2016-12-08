@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import javax.swing.JPanel;
@@ -27,6 +28,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
     //Boutons d'actions
     JButton Creation = new JButton("Créer un compte");
     JButton Chat = new JButton("Passer en Mode Chat");
+    JButton Suppression = new JButton("Supprimer un compte");
     
 		    public ConnexionAdmin() throws Exception { 
 		    	//JPanel Gauche
@@ -46,9 +48,15 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	Chat.setLocation(260,110);
 		    	Chat.addActionListener(this);
 		    	
+		    	//Bouton Suppression
+		    	Suppression.setSize(160,25);
+		    	Suppression.setLocation(60,200);
+		    	Suppression.addActionListener(this);
+		    	
 		    	//Ajout Bouton au panel
 		    	PGauche.add(Chat);
 		    	PGauche.add(Creation);
+		    	PGauche.add(Suppression);
 
 
 		    	//Jpanel Droite
@@ -90,8 +98,18 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
-
-			
+				
+				/*Si on clique sur Supprimer un compte
+				if (e.getActionCommand().equals("Supprimer un compte"))
+					try {
+					PDroite.removeAll();
+					PDroite.add(new Modification());
+					PDroite.validate();
+					PDroite.repaint();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+*/
 			}
 			
 }

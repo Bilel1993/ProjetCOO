@@ -74,19 +74,19 @@ import Persistance.PersonneMapper;
 		    	
 		    	//Bouton se ConnecterA
 		    	SeConnecterA.setSize(180,25);
-		    	SeConnecterA.setLocation(10,100);
+		    	SeConnecterA.setLocation(10,120); /* clem:j'ai abaissé de 20 le bouton */
 		    	SeConnecterA.addActionListener(this);
 		    	
 		    	//Bouton SeConnecterU
 		    	SeConnecterU.setSize(180,25);
-		    	SeConnecterU.setLocation(210,100);
+		    	SeConnecterU.setLocation(210,120); /* clem:j'ai abaissé de 20 le bouton */
 		    	SeConnecterU.addActionListener(this);
 
 		    	//Ajout d une erreur  Non visible pour le moment
 		    	Erreur = new JLabel("Erreur, Nom ou Mot de passe Incorrecte",JLabel.CENTER);
 		    	Erreur.setForeground(Color.RED);
 		    	Erreur.setSize(250,25);
-		    	Erreur.setLocation(75,140);
+		    	Erreur.setLocation(75,150); /* clem: j'ai abaissé le texte d'erreur */
 		    	Erreur.setVisible(false);
 		    	
 		    	
@@ -102,7 +102,7 @@ import Persistance.PersonneMapper;
 		    	
 		    	
 		    	//Parametre JFrame
-		        this.setSize(450,200);
+		        this.setSize(450,225);
 		        this.setTitle("Connexion");
 		        this.setLocationRelativeTo(null);
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
