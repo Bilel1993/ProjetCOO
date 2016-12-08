@@ -13,6 +13,8 @@ public class Suppression extends JPanel implements ActionListener  {
 	JLabel Description;
 	JLabel rechercherLabel;
     JTextField rechercher;
+    JLabel Erreur;
+    JLabel Confirmation;
     
     //Jbutton
     JButton Boutonrechercher = new JButton("Rechercher");
@@ -44,7 +46,7 @@ public class Suppression extends JPanel implements ActionListener  {
     	
     	//Bouton Rechercher
     	Boutonrechercher.setSize(150,25);
-    	Boutonrechercher.setLocation(200,300);
+    	Boutonrechercher.setLocation(200,200);
     	Boutonrechercher.addActionListener(this);
     	
     	//Bouton Suppression
@@ -59,6 +61,20 @@ public class Suppression extends JPanel implements ActionListener  {
     	this.add(Boutonrechercher);
     	this.add(Boutonsupprimer);
     	
+    	//Ajout d'une erreur  Non visible pour le moment
+    	Erreur = new JLabel("Erreur, ce compte n'existe pas",JLabel.CENTER);
+    	Erreur.setForeground(Color.RED);
+    	Erreur.setSize(250,25);
+    	Erreur.setLocation(75,200);
+    	Erreur.setVisible(false);
+    	
+    	//Ajout d'un message de confirmation de suppression
+    	Confirmation = new JLabel("Voulez-vous vraiment supprimer ce compte?",JLabel.CENTER);
+    	Confirmation.setForeground(Color.BLUE);
+    	Confirmation.setSize(250,25);
+    	Confirmation.setLocation(75,400);
+    	Confirmation.setVisible(false);
+    	
     }; 
 
 	public void actionPerformed(ActionEvent e) {
@@ -68,13 +84,13 @@ public class Suppression extends JPanel implements ActionListener  {
 			try {
 				//on verifie que le pseudo n existe pas dans la BDD
 				if (PM.IsExistNomComptePers(rechercher.getText()) > 0){
-					//on récupère le nom du compte
-					Personne p =PM.FindByComptePers(rechercher.getText());
 					//on confirme la suppression du compte
-					System.out.println("Voulez-vous vraiment supprimer ce compte?");
+					Confirmation.setText("Voulez-vous vraiment supprimer ce compte?");
+					Confirmation.setVisible(true);
 				}else{
 					//Sinon, il y a une erreur
-					System.out.println("Erreur, le compte n'existe pas !");
+					Erreur.setText("Erreur, ce compte n'existe pas");
+					Erreur.setVisible(true);
 					}
 			} catch (SQLException e1) {
 				e1.printStackTrace();

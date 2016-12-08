@@ -56,7 +56,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	
 		    	//Bouton Suppression
 		    	Suppression.setSize(160,25);
-		    	Suppression.setLocation(60,200);
+		    	Suppression.setLocation(260,170);
 		    	Suppression.addActionListener(this);
 		    	
 		    	//Ajout Bouton au panel

@@ -73,12 +73,12 @@ import Persistance.PersonneMapper;
 		    	motdepasse.setLocation(150,65);
 		    	
 		    	//Bouton se ConnecterA
-		    	SeConnecterA.setSize(180,25);
+		    	SeConnecterA.setSize(195,25);
 		    	SeConnecterA.setLocation(10,120);
 		    	SeConnecterA.addActionListener(this);
 		    	
 		    	//Bouton SeConnecterU
-		    	SeConnecterU.setSize(180,25);
+		    	SeConnecterU.setSize(195,25);
 		    	SeConnecterU.setLocation(210,120);
 		    	SeConnecterU.addActionListener(this);
 
@@ -102,7 +102,7 @@ import Persistance.PersonneMapper;
 		    	
 		    	
 		    	//Parametre JFrame
-		        this.setSize(450,200);
+		        this.setSize(450,225);
 		        this.setTitle("Connexion");
 		        this.setLocationRelativeTo(null);
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
