@@ -12,10 +12,8 @@ import java.awt.Color;
 
 
 @SuppressWarnings({ "serial", "unused" })
-public class Chat extends JFrame implements ActionListener  { 
+public class Chat extends JPanel implements ActionListener  { 
 	    String message;
-	    JPanel PChat1;
-	    JPanel PChat;
 	    
 	    JTextField saisie;
 	    JTextField MessageEnvoyer;
@@ -24,11 +22,10 @@ public class Chat extends JFrame implements ActionListener  {
 
 	    public Chat() throws Exception { 
 	    	Envoyer.addActionListener(this);
-
-	    	PChat= new JPanel(new FlowLayout());
-	    	PChat.setOpaque(true);
-	    	PChat.setLayout(null);
-	    	PChat.setBackground(Color.LIGHT_GRAY);
+	    	new JPanel(new FlowLayout());
+	    	this.setOpaque(true);
+	    	this.setLayout(null);
+	    	this.setBackground(Color.LIGHT_GRAY);
 	    	saisie= new JTextField(); 
 	    	saisie.setColumns(120);
 	    	saisie.setSize(475,80);
@@ -39,13 +36,10 @@ public class Chat extends JFrame implements ActionListener  {
 	    	MessageEnvoyer.setLocation(3,3);
 	    	Envoyer.setSize(150,25);
 	    	Envoyer.setLocation(165,415);
-	    	PChat.add(MessageEnvoyer);
-	    	PChat.add(saisie);
-	    	PChat.add(Envoyer);
+	    	this.add(MessageEnvoyer);
+	    	this.add(saisie);
+	    	this.add(Envoyer);
 	        this.setSize(500,500);
-	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-	        this.setContentPane(PChat);
-	        //this.pack();
 	        this.setVisible(true);
 	    }; 
 	    

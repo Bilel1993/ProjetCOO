@@ -2,7 +2,6 @@ package Presentation;
 import Domaine.*;
 import Persistance.PersonneMapper;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -10,70 +9,88 @@ import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings("serial")
-public class Inscription extends JFrame implements ActionListener  { 
-	JLabel nom1;
-    JLabel motdepasse1;
-    JLabel pseudo1;
-    JLabel prenom1;
-    JPanel PInscription; 
+public class Inscription extends JPanel implements ActionListener  { 	
+	//Label et TextField
+	JLabel Description;
+	JLabel nomLabel;
     JTextField nom;
-    JTextField prenom;
+    JLabel motdepasseLabel;
     JPasswordField motdepasse;
+    JLabel PseudoLabel;
     JTextField pseudo;
-    JButton inscription = new JButton("inscription");
+    JLabel prenomLabel;
+    JTextField prenom;
     
-
+    //Jbutton
+    JButton Boutoninscription = new JButton("inscription");
+    
     public Inscription() throws Exception {
-    	inscription.addActionListener(this);
-    	JPanel PInscription= new JPanel(new FlowLayout());
-    	PInscription.setOpaque(true);
-    	PInscription.setLayout(null);
-
-    	PInscription.setBackground(Color.LIGHT_GRAY);	
-    	nom1 = new JLabel("Nom ",JLabel.CENTER);
-    	nom1.setSize(100,100);
-    	nom1.setLocation(30,10);
+    	//Option du Panel
+    	new JPanel(new FlowLayout());
+    	this.setLayout(null);
+    	this.setOpaque(true);
+    	this.setBackground(Color.LIGHT_GRAY);	
+        this.setSize(500,500);
+        this.setVisible(true);
+        
+        //Description
+        Description = new JLabel("Creer un nouvel utilisateur :");
+        Description.setSize(250,50);
+        Description.setLocation(175,10);
+        
+    	//Nom
+    	nomLabel = new JLabel("Nom :",JLabel.CENTER);
+    	nomLabel.setSize(100,100);
+    	nomLabel.setLocation(30,50);
     	nom = new JTextField(); 
     	nom.setColumns(20);
     	nom.setSize(150,25);
-    	nom.setLocation(200,47);
-    	prenom1 = new JLabel("Prenom ",JLabel.CENTER);
-    	prenom1.setSize(100,100);
-    	prenom1.setLocation(30,50);
+    	nom.setLocation(200,87);
+    	
+    	//Prenom
+    	prenomLabel = new JLabel("Prenom ",JLabel.CENTER);
+    	prenomLabel.setSize(100,100);
+    	prenomLabel.setLocation(30,80);
     	prenom = new JTextField(); 
     	prenom.setColumns(20);
     	prenom.setSize(150,25);
-    	prenom.setLocation(200,87);
-    	motdepasse1 = new JLabel("Mot de passe ",JLabel.CENTER);
-    	motdepasse1.setSize(100,100);
-    	motdepasse1.setLocation(30,90);
+    	prenom.setLocation(200,127);
+    	
+    	//MotDePasse
+    	motdepasseLabel = new JLabel("Mot de passe :",JLabel.CENTER);
+    	motdepasseLabel.setSize(100,100);
+    	motdepasseLabel.setLocation(30,130);
     	motdepasse = new JPasswordField(); 
     	motdepasse.setColumns(20);
     	motdepasse.setSize(150,25);
-    	motdepasse.setLocation(200,127);
-    	pseudo1 = new JLabel("Pseudo ",JLabel.CENTER);
-    	pseudo1.setSize(100,100);
-    	pseudo1.setLocation(30,130);
+    	motdepasse.setLocation(200,167);
+    	
+    	//Pseudo
+    	PseudoLabel = new JLabel("Pseudonyme : ",JLabel.CENTER);
+    	PseudoLabel.setSize(100,100);
+    	PseudoLabel.setLocation(30,170);
     	pseudo = new JTextField(); 
     	pseudo.setColumns(20);
     	pseudo.setSize(150,25);
-    	pseudo.setLocation(200,167);
-    	inscription.setSize(150,25);
-    	inscription.setLocation(200,300);
-    	PInscription.add(nom1);
-    	PInscription.add(nom);
-    	PInscription.add(prenom1);
-    	PInscription.add(prenom);
-    	PInscription.add(motdepasse1);
-    	PInscription.add(motdepasse);
-    	PInscription.add(pseudo1);
-    	PInscription.add(pseudo);
-    	PInscription.add(inscription);
-        this.setSize(500,500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-        this.setContentPane(PInscription);
-        //this.pack();
-        this.setVisible(true);
+    	pseudo.setLocation(200,207);
+    	
+    	//Bouton this
+    	Boutoninscription.setSize(150,25);
+    	Boutoninscription.setLocation(200,300);
+    	Boutoninscription.addActionListener(this);
+    	
+    	//Ajout au Panel 
+    	this.add(Description);
+    	this.add(nomLabel);
+    	this.add(nom);
+    	this.add(prenomLabel);
+    	this.add(prenom);
+    	this.add(motdepasseLabel);
+    	this.add(motdepasse);
+    	this.add(PseudoLabel);
+    	this.add(pseudo);
+    	this.add(Boutoninscription);
+    	
     }; 
 		  
 
@@ -86,7 +103,7 @@ public class Inscription extends JFrame implements ActionListener  {
 				//on verifie que le pseudo n existe pas dans la BDD
 				if (PM.IsExistNomComptePers(pseudo.getText()) > 0)
 					//si il existe : erreur
-					System.out.println("Erreur, le Nom de ocmpte est déjà pris !");
+					System.out.println("Erreur, le Nom de compte est deja pris !");
 				else{
 					//Sinon, on cree la personne, et on l insert dans le mapper
 					Personne p=new Utilisateur(pseudo.getText(),nom.getText(),
@@ -96,15 +113,8 @@ public class Inscription extends JFrame implements ActionListener  {
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
-				
-			System.out.println(nom.getText());
-			System.out.println(prenom.getText());
-			System.out.println(motdepasse.getPassword());
-			System.out.println(pseudo.getText());
+}//Action performed
 
-    }
-
-		
-		}
+}//Inscription
 
 

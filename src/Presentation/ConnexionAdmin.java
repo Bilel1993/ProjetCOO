@@ -1,7 +1,9 @@
 package Presentation;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,23 +20,22 @@ import javax.swing.JPanel;
 
 @SuppressWarnings({ "serial", "unused" })
 public class ConnexionAdmin extends JFrame implements ActionListener  { 
-	Inscription im;
-	Chat chat;
-    //Jpanel
-	JPanel PAdmin ;   
-    
+    //Jpanel Gauche avec les boutons
+	JPanel PGauche ;   
+	//Jpanel Droit, qui affiche selon le bouton qu'on appuie
+	JPanel PDroite;
     //Boutons d'actions
     JButton Creation = new JButton("Créer un compte");
     JButton Chat = new JButton("Passer en Mode Chat");
     
-
 		    public ConnexionAdmin() throws Exception { 
-		    	//JPanel
-		    	PAdmin= new JPanel(new FlowLayout());
-		    	PAdmin.setOpaque(true);
-		    	PAdmin.setLayout(null);
-		    	PAdmin.setBackground(Color.LIGHT_GRAY);	
-		    	
+		    	//JPanel Gauche
+		    	PGauche= new JPanel(new FlowLayout());
+		    	PGauche.setOpaque(true);
+		    	PGauche.setLayout(null);
+		    	PGauche.setBackground(Color.LIGHT_GRAY);
+		    	PGauche.setBorder(BorderFactory.createMatteBorder(0, 0, 0,2, Color.BLACK));
+
 		    	//Bouton Creation
 		    	Creation.setSize(150,25);
 		    	Creation.setLocation(60,110);
@@ -46,22 +47,35 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	Chat.addActionListener(this);
 		    	
 		    	//Ajout Bouton au panel
-		    	PAdmin.add(Chat);
-		    	PAdmin.add(Creation);
+		    	PGauche.add(Chat);
+		    	PGauche.add(Creation);
+
+
+		    	//Jpanel Droite
+		    	PDroite= new JPanel();
+		    	PDroite.setOpaque(true);
+		    	PDroite.setLayout(null);
+		    	PDroite.setBackground(Color.LIGHT_GRAY);	
+
 		    	
 		    	//JFrame
-		        this.setSize(500,500);
+		        this.setSize(1000,500);
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		        this.setContentPane(PAdmin);
+		        this.getContentPane().setLayout(new GridLayout(1,2));
+				this.getContentPane().add(PGauche);
+				this.getContentPane().add(PDroite);
 		        this.setVisible(true);
 		    }; 
 		    
 		   
 			public void actionPerformed(ActionEvent e) {
-				//Si on clique sur Creer Compte
+				//Si on clique sur Creer Compte , la Partie de droite devient Inscription
 				if (e.getActionCommand().equals("Créer un compte"))
-					try {
-						im= new Inscription();
+					try {						
+						PDroite.removeAll();
+						PDroite.add(new Inscription());
+						PDroite.validate();
+						PDroite.repaint();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -69,7 +83,10 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 				//Si on clique sur Passer en mode Chat
 				if (e.getActionCommand().equals("Passer en Mode Chat"))
 					try {
-						chat= new Chat();
+					PDroite.removeAll();
+					PDroite.add(new Chat());
+					PDroite.validate();
+					PDroite.repaint();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
