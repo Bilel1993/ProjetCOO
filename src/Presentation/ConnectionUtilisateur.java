@@ -19,6 +19,8 @@ import java.awt.Rectangle;
 import javax.swing.JPanel;
 
 
+
+@SuppressWarnings({ "serial", "unused" })
 public class ConnectionUtilisateur extends JFrame implements ActionListener  { 
 		Connexion  con;
 		Chat chat;

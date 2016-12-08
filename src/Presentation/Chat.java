@@ -4,23 +4,14 @@ package Presentation;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.io.IOException;
-import java.util.Stack;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Rectangle;
-import javax.swing.JPanel;
 
 
+@SuppressWarnings({ "serial", "unused" })
 public class Chat extends JFrame implements ActionListener  { 
 	    String message;
 	    JPanel PChat1;

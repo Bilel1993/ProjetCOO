@@ -27,6 +27,8 @@ import Domaine.Utilisateur;
 import Persistance.PersonneMapper;
 
 
+
+@SuppressWarnings({ "serial", "unused" })
 	public class Connexion extends JFrame implements ActionListener  { 
 		    JLabel pseudo1;
 		    JLabel motdepasse1;
@@ -54,7 +56,7 @@ import Persistance.PersonneMapper;
 		    	motdepasse1 = new JLabel("Mot de passe ",JLabel.CENTER);
 		    	motdepasse1.setSize(170,100);
 		    	motdepasse1.setLocation(22,50);
-		    	motdepasse = new JPasswordField(); 
+		    	motdepasse = new JTextField(); 
 		    	motdepasse.setColumns(20);
 		    	motdepasse.setSize(150,25);
 		    	motdepasse.setLocation(200,87);
@@ -79,8 +81,8 @@ import Persistance.PersonneMapper;
 				if (e.getActionCommand().equals("connexion"))
 					try {
 						//on verifie si la personne existe dans la BDD
-						if (PM.IsConnected(pseudo.getText(),motdepasse.getText()) > 0)
-							if(PM.IsAdmin(pseudo.getText(),motdepasse.getText()) == 1)
+						if (PM.IsConnected(pseudo.getText(),motdepasse.getPassword()) > 0)
+							if(PM.IsAdmin(pseudo.getText(),motdepasse.getPassword()) == 1)
 								 connectionadmin = new ConnectionAdmin();
 							else connnectionutilsateur = new ConnectionUtilisateur();
 						
