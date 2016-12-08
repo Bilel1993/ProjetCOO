@@ -28,35 +28,38 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
         
 
 	    public ConnexionUtilisateur() throws Exception { 
-	    	Chat.addActionListener(this);
+	    	//Panel
 	    	PUtilisateur=new JPanel(new FlowLayout());
 	    	PUtilisateur.setOpaque(true);
 	    	PUtilisateur.setLayout(null);
-
 	    	PUtilisateur.setBackground(Color.LIGHT_GRAY);	
+	    	
+	    	//Bouton Chat
 	    	Chat.setSize(170,25);
 	    	Chat.setLocation(150,170);
+	    	Chat.addActionListener(this);
+	    	
+	    	//Ajouts Boutons
 	    	PUtilisateur.add(Chat);
+	    	
+	    	//JFrame
 	        this.setSize(500,500);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 	        this.setContentPane(PUtilisateur);
-	        //this.pack();
 	        this.setVisible(true);
 	    }; 
 	    
 	   
 		public void actionPerformed(ActionEvent e) {
-		
+			//Si on clique sur Chat
 			if (e.getActionCommand().equals("Passer en Mode Chat"))
 				try {
 					chat= new Chat();
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
-		}
-		
+		}		
 }
 		
 

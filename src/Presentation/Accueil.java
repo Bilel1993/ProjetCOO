@@ -30,81 +30,100 @@ import Persistance.PersonneMapper;
 
 @SuppressWarnings({ "serial", "unused" })
 	public class Accueil extends JFrame implements ActionListener  { 
+			//Les fenêtres selon la connexion de la personne
+	 		ConnexionAdmin connexionA;
+	 		ConnexionUtilisateur connexionU;
+	 		
+	 		//Les labels et Champs
 		    JLabel pseudoLabel;
 		    JLabel motdepasseLabel;
 		    JPanel PAccueil; 
 		    JTextField pseudo;
+		    JLabel Erreur;
 		    JPasswordField motdepasse;
 		    
 		    //Bouton Se connecter
 	        JButton SeConnecter = new JButton("Se Connecter");
-	        //Les fenetres s'ouvrant selon le choix de connexion
-	        ConnexionAdmin  connexionadmin;
-	        ConnexionUtilisateur  connnexionutilsateur;
 
 
 		    public Accueil() throws Exception {
+		    	//Jpanel
 		    	PAccueil= new JPanel(new FlowLayout());
 		    	PAccueil.setOpaque(true);
 		    	PAccueil.setLayout(null);
 		    	PAccueil.setBackground(Color.LIGHT_GRAY);	
+		    	
+		    	//Pseudo
 		    	pseudoLabel = new JLabel("Pseudo ",JLabel.CENTER);
-		    	pseudoLabel.setSize(100,100);
-		    	pseudoLabel.setLocation(35,10);
+		    	pseudoLabel.setSize(50,50);
+		    	pseudoLabel.setLocation(10,10);
 		    	pseudo = new JTextField(); 
 		    	pseudo.setColumns(20);
 		    	pseudo.setSize(150,25);
-		    	pseudo.setLocation(200,47);
+		    	pseudo.setLocation(100,25);
+		    	
+		    	//Mot de passe
 		    	motdepasseLabel = new JLabel("Mot de passe ",JLabel.CENTER);
-		    	motdepasseLabel.setSize(170,100);
-		    	motdepasseLabel.setLocation(22,50);
+		    	motdepasseLabel.setSize(150,50);
+		    	motdepasseLabel.setLocation(-25,50);
 		    	motdepasse = new JPasswordField(); 
 		    	motdepasse.setColumns(20);
 		    	motdepasse.setSize(150,25);
-		    	motdepasse.setLocation(200,87);
-		    	SeConnecter.setSize(150,25);
-		    	SeConnecter.setLocation(200,150);
+		    	motdepasse.setLocation(100,65);
+		    	
+		    	//Bouton se Connecter
+		    	SeConnecter.setSize(125,25);
+		    	SeConnecter.setLocation(100,100);
 		    	SeConnecter.addActionListener(this);
+
+		    	//Ajout d une erreur  Non visible pour le moment
+		    	Erreur = new JLabel("Erreur, ID inconnu !",JLabel.CENTER);
+		    	Erreur.setForeground(Color.RED);
+		    	Erreur.setSize(150,25);
+		    	Erreur.setLocation(75,140);
+		    	Erreur.setVisible(false);
+		    	
+		    	//Ajout dans le Panel
 		    	PAccueil.add(pseudoLabel);
 		    	PAccueil.add(pseudo);
 		    	PAccueil.add(motdepasseLabel);
 		    	PAccueil.add(motdepasse);
 		    	PAccueil.add(SeConnecter);
-		        this.setSize(500,500);
+		    	PAccueil.add(Erreur);
+		    	
+		    	
+		    	//Parametre JFrame
+		        this.setSize(300,200);
+		        this.setTitle("Connexion");
+		        this.setLocationRelativeTo(null);
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		        this.setContentPane(PAccueil);
-		        //this.pack();
 		        this.setVisible(true);
 		    }; 
 		  
 
-
+		    //Actions !
 			public void actionPerformed(ActionEvent e) {
 				PersonneMapper PM = new PersonneMapper();
+				//Si on clique sur Se connecter
 				if (e.getActionCommand().equals("Se Connecter"))
 					try {
-						//on verifie si la personne existe dans la BDD
-						if (PM.IsConnected(pseudo.getText(),motdepasse.getPassword()) > 0)
+						//on verifie l'existence d'une personne en BDD
+						if (PM.Exists(pseudo.getText(),motdepasse.getPassword()) > 0)
+							//On verifie si elle est admin ou non
 							if(PM.IsAdmin(pseudo.getText(),motdepasse.getPassword()) == 1)
-								 connexionadmin = new ConnexionAdmin();
-							else connnexionutilsateur = new ConnexionUtilisateur();
-						
+								  connexionA = new ConnexionAdmin();
+							else
+								 connexionU = new ConnexionUtilisateur();	
 						else{
-							System.out.println("erreur");
-						
-							}
-						
+							Erreur.setVisible(true);							}				
 					}catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-			
-			
-		
-			}
+			}//fin actionPerformed
 
 			
-		}
+}//fin  Accueil
 
 
 

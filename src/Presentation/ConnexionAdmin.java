@@ -20,47 +20,57 @@ import javax.swing.JPanel;
 public class ConnexionAdmin extends JFrame implements ActionListener  { 
 	Inscription im;
 	Chat chat;
-    JPanel PAdmin ;   
+    //Jpanel
+	JPanel PAdmin ;   
+    
+    //Boutons d'actions
     JButton Creation = new JButton("Créer un compte");
     JButton Chat = new JButton("Passer en Mode Chat");
     
 
 		    public ConnexionAdmin() throws Exception { 
-		    	Creation.addActionListener(this);
-		    	Chat.addActionListener(this);
+		    	//JPanel
 		    	PAdmin= new JPanel(new FlowLayout());
 		    	PAdmin.setOpaque(true);
 		    	PAdmin.setLayout(null);
-
 		    	PAdmin.setBackground(Color.LIGHT_GRAY);	
+		    	
+		    	//Bouton Creation
 		    	Creation.setSize(150,25);
 		    	Creation.setLocation(60,110);
+		    	Creation.addActionListener(this);
+		    	
+		    	//Bouton Chat
 		    	Chat.setSize(170,25);
 		    	Chat.setLocation(260,110);
+		    	Chat.addActionListener(this);
+		    	
+		    	//Ajout Bouton au panel
 		    	PAdmin.add(Chat);
 		    	PAdmin.add(Creation);
+		    	
+		    	//JFrame
 		        this.setSize(500,500);
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		        this.setContentPane(PAdmin);
-		        //this.pack();
 		        this.setVisible(true);
 		    }; 
 		    
 		   
 			public void actionPerformed(ActionEvent e) {
+				//Si on clique sur Creer Compte
 				if (e.getActionCommand().equals("Créer un compte"))
 					try {
 						im= new Inscription();
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				
+				//Si on clique sur Passer en mode Chat
 				if (e.getActionCommand().equals("Passer en Mode Chat"))
 					try {
 						chat= new Chat();
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 

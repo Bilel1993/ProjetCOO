@@ -51,7 +51,7 @@ public class PersonneMapper {
 		}
 	
 	// Verifie si une personne se connecte avec des identifiants présent en BDD
-	public int IsConnected(String NomCompte , char[] cs) throws SQLException {
+	public int Exists(String NomCompte , char[] cs) throws SQLException {
 		String req = "SELECT count(*) FROM Personne WHERE NomComptePers =? and PasswordPers=?";
 		DBConfig.getInstance();
 		String mdp = new String(cs);
