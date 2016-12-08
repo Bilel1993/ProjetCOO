@@ -43,7 +43,8 @@ import Persistance.PersonneMapper;
 		    JPasswordField motdepasse;
 		    
 		    //Bouton Se connecter
-	        JButton SeConnecter = new JButton("Se Connecter");
+	        JButton SeConnecterA = new JButton("Mode Administrateur");
+	        JButton SeConnecterU = new JButton("Mode Utilisateur");
 
 
 		    public Accueil() throws Exception {
@@ -56,44 +57,52 @@ import Persistance.PersonneMapper;
 		    	//Pseudo
 		    	pseudoLabel = new JLabel("Pseudo ",JLabel.CENTER);
 		    	pseudoLabel.setSize(50,50);
-		    	pseudoLabel.setLocation(10,10);
+		    	pseudoLabel.setLocation(60,10);
 		    	pseudo = new JTextField(); 
 		    	pseudo.setColumns(20);
 		    	pseudo.setSize(150,25);
-		    	pseudo.setLocation(100,25);
+		    	pseudo.setLocation(150,25);
 		    	
 		    	//Mot de passe
 		    	motdepasseLabel = new JLabel("Mot de passe ",JLabel.CENTER);
 		    	motdepasseLabel.setSize(150,50);
-		    	motdepasseLabel.setLocation(-25,50);
+		    	motdepasseLabel.setLocation(25,50);
 		    	motdepasse = new JPasswordField(); 
 		    	motdepasse.setColumns(20);
 		    	motdepasse.setSize(150,25);
-		    	motdepasse.setLocation(100,65);
+		    	motdepasse.setLocation(150,65);
 		    	
-		    	//Bouton se Connecter
-		    	SeConnecter.setSize(125,25);
-		    	SeConnecter.setLocation(100,100);
-		    	SeConnecter.addActionListener(this);
+		    	//Bouton se ConnecterA
+		    	SeConnecterA.setSize(180,25);
+		    	SeConnecterA.setLocation(10,100);
+		    	SeConnecterA.addActionListener(this);
+		    	
+		    	//Bouton SeConnecterU
+		    	SeConnecterU.setSize(180,25);
+		    	SeConnecterU.setLocation(210,100);
+		    	SeConnecterU.addActionListener(this);
 
 		    	//Ajout d une erreur  Non visible pour le moment
-		    	Erreur = new JLabel("Erreur, ID inconnu !",JLabel.CENTER);
+		    	Erreur = new JLabel("Erreur, Nom ou Mot de passe Incorrecte",JLabel.CENTER);
 		    	Erreur.setForeground(Color.RED);
-		    	Erreur.setSize(150,25);
+		    	Erreur.setSize(250,25);
 		    	Erreur.setLocation(75,140);
 		    	Erreur.setVisible(false);
+		    	
+		    	
 		    	
 		    	//Ajout dans le Panel
 		    	PAccueil.add(pseudoLabel);
 		    	PAccueil.add(pseudo);
 		    	PAccueil.add(motdepasseLabel);
 		    	PAccueil.add(motdepasse);
-		    	PAccueil.add(SeConnecter);
+		    	PAccueil.add(SeConnecterA);
+		    	PAccueil.add(SeConnecterU);
 		    	PAccueil.add(Erreur);
 		    	
 		    	
 		    	//Parametre JFrame
-		        this.setSize(300,200);
+		        this.setSize(450,200);
 		        this.setTitle("Connexion");
 		        this.setLocationRelativeTo(null);
 		        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -105,18 +114,34 @@ import Persistance.PersonneMapper;
 		    //Actions !
 			public void actionPerformed(ActionEvent e) {
 				PersonneMapper PM = new PersonneMapper();
-				//Si on clique sur Se connecter
-				if (e.getActionCommand().equals("Se Connecter"))
+				//Si on clique sur Se connecter en tant qu'adminstrateur
+				if (e.getActionCommand().equals("Mode Administrateur"))
+					try {
+						//on verifie l'existence d'une personne en BDD
+						if (PM.Exists(pseudo.getText(),motdepasse.getPassword()) > 0){
+							//On verifie si elle est admin ou non
+							if(PM.IsAdmin(pseudo.getText(),motdepasse.getPassword()) == 1)
+								connexionA = new ConnexionAdmin();
+							else{
+								Erreur.setText("Erreur, vous n'êtes pas Administrateur");
+								Erreur.setVisible(true);						
+							}	
+						}else{
+							Erreur.setVisible(true);
+						}
+					}catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				
+				//Si on clique sur Se connecter en tant qu'Utilisateur
+				if (e.getActionCommand().equals("Mode Utilisateur"))
 					try {
 						//on verifie l'existence d'une personne en BDD
 						if (PM.Exists(pseudo.getText(),motdepasse.getPassword()) > 0)
-							//On verifie si elle est admin ou non
-							if(PM.IsAdmin(pseudo.getText(),motdepasse.getPassword()) == 1)
-								  connexionA = new ConnexionAdmin();
-							else
 								 connexionU = new ConnexionUtilisateur();	
 						else{
-							Erreur.setVisible(true);							}				
+							Erreur.setVisible(true);						
+						}				
 					}catch (Exception e1) {
 						e1.printStackTrace();
 					}
