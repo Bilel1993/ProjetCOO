@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,11 +14,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import Domaine.Personne;
-import Domaine.Utilisateur;
-import Persistance.PersonneMapper;
-import Persistance.UnitOfWork;
+import Domaine.*;
+import Persistance.*;
 
+	@SuppressWarnings("serial")
 	public class AfficherPersonne extends JFrame implements ActionListener  { 	
 		//Label et TextField
 		JLabel Modifer;
@@ -30,6 +28,7 @@ import Persistance.UnitOfWork;
 	    JLabel prenomLabel;
 	    JTextField prenom;
 	    JLabel message;
+	    
 	    //Jbutton
 	    JButton BoutonModifier= new JButton("Modifier");
 	    
@@ -93,7 +92,7 @@ import Persistance.UnitOfWork;
 	    	
 	    	
 	    	//Ajout d un message  Non visible pour le moment
-	    	message = new JLabel("l'utilsateur a été modfier ",JLabel.CENTER);
+	    	message = new JLabel("l'utilisateur a été modifie",JLabel.CENTER);
 	    	message.setForeground(Color.RED);
 	    	message.setSize(250,25);
 	    	message.setLocation(150,250);
@@ -127,16 +126,8 @@ import Persistance.UnitOfWork;
 	    }; 
 			  
 
-
-
-	
-
-
-
-
 		public void actionPerformed(ActionEvent e) {
-
-			//Si on clique sur Inscription
+			//Si on clique sur Modifier
 			if (e.getActionCommand().equals("Modifier")){
 				message.setVisible(true);						
 

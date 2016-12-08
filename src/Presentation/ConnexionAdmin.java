@@ -28,6 +28,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
     JButton Creation = new JButton("Créer un compte");
     JButton Chat = new JButton("Passer en Mode Chat");
     JButton Modifier = new JButton("Modifier un utilsateur");
+    JButton Suppression = new JButton("Supprimer un compte");
     
     
 		    public ConnexionAdmin() throws Exception { 
@@ -53,11 +54,16 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	Modifier.setLocation(60,170);
 		    	Modifier.addActionListener(this);
 		    	
+		    	//Bouton Suppression
+		    	Suppression.setSize(160,25);
+		    	Suppression.setLocation(60,200);
+		    	Suppression.addActionListener(this);
+		    	
 		    	//Ajout Bouton au panel
 		    	PGauche.add(Chat);
 		    	PGauche.add(Creation);
 		    	PGauche.add(Modifier);
-
+		    	PGauche.add(Suppression);
 
 		    	//Jpanel Droite
 		    	PDroite= new JPanel();
@@ -99,12 +105,23 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 						e1.printStackTrace();
 					}
 				
-				//Si on clique sur Modifier un utlisateur
-
+				//Si on clique sur Modifier un utilisateur
 				if (e.getActionCommand().equals("Modifier un utilsateur"))
 					try {
 					PDroite.removeAll();
 					PDroite.add(new ChercherPersonne());
+					PDroite.validate();
+					PDroite.repaint();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				
+				
+				//Si on clique sur Supprimer un compte
+				if (e.getActionCommand().equals("Supprimer un compte"))
+					try {
+					PDroite.removeAll();
+					PDroite.add(new Suppression());
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {
