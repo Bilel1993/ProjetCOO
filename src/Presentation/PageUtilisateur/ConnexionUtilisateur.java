@@ -1,4 +1,4 @@
-package Presentation;
+package Presentation.PageUtilisateur;
 import javax.swing.JButton;
 
 import java.awt.FlowLayout;
@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Presentation.Accueil;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -22,7 +24,7 @@ import javax.swing.JPanel;
 
 @SuppressWarnings({ "serial", "unused" })
 public class ConnexionUtilisateur extends JFrame implements ActionListener  { 
-		Chat chat;
+		ChatUtilisateur chat;
 	    JPanel PUtilisateur;  
 	    JButton Chat = new JButton("Passer en Mode Chat");
         
@@ -59,7 +61,7 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 			//Si on clique sur Chat
 			if (e.getActionCommand().equals("Passer en Mode Chat"))
 				try {
-					chat= new Chat();
+					chat= new ChatUtilisateur();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

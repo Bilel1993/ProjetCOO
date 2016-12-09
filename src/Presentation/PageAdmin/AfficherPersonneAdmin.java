@@ -1,4 +1,4 @@
-package Presentation;
+package Presentation.PageAdmin;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -18,7 +18,7 @@ import Domaine.*;
 import Persistance.*;
 
 	@SuppressWarnings("serial")
-	public class AfficherPersonne extends JFrame implements ActionListener  { 	
+	public class AfficherPersonneAdmin extends JFrame implements ActionListener  { 	
 		//Label et TextField
 		JLabel Modifer;
 		JLabel nomLabel;
@@ -32,7 +32,7 @@ import Persistance.*;
 	    //Jbutton
 	    JButton BoutonModifier= new JButton("Modifier");
 	    
-	    public AfficherPersonne(Personne p) throws Exception {
+	    public AfficherPersonneAdmin(Personne p) throws Exception {
 	    	//Option du Panel
 	    	new JPanel(new FlowLayout());
 	    	this.setLayout(null);

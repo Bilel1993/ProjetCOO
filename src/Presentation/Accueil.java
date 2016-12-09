@@ -25,6 +25,8 @@ import javax.swing.JPanel;
 import Domaine.Personne;
 import Domaine.Utilisateur;
 import Persistance.PersonneMapper;
+import Presentation.PageAdmin.*;
+import Presentation.PageUtilisateur.*;
 
 
 

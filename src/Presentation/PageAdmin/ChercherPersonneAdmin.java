@@ -1,4 +1,4 @@
-package Presentation;
+package Presentation.PageAdmin;
 
 
 import Persistance.PersonneMapper;
@@ -8,8 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 
 	@SuppressWarnings("serial")
-	public class ChercherPersonne extends JPanel implements ActionListener  { 	
-		AfficherPersonne afficher;
+	public class ChercherPersonneAdmin extends JPanel implements ActionListener  { 	
+		AfficherPersonneAdmin afficher;
 		//Label et TextField
 		JLabel ChercherPers;
 	    JLabel PseudoLabel;
@@ -20,7 +20,7 @@ import java.awt.*;
 	    //Jbutton
 	    JButton BoutonChercher= new JButton("Chercher");
 	    
-	    public ChercherPersonne() throws Exception {
+	    public ChercherPersonneAdmin() throws Exception {
 	    	//Option du Panel
 	    	new JPanel(new FlowLayout());
 	    	this.setLayout(null);
@@ -73,7 +73,7 @@ import java.awt.*;
 				try {
 					//on verifie que le pseudo  existe  dans la BDD
 					if (PM.IsExistNomComptePers(pseudo.getText()) > 0)
-						afficher = new AfficherPersonne(PM.FindByComptePers(pseudo.getText()));
+						afficher = new AfficherPersonneAdmin(PM.FindByComptePers(pseudo.getText()));
 				
 					else
 						//si il n'existe  pas: erreur

@@ -1,4 +1,4 @@
-package Presentation;
+package Presentation.PageAdmin;
 import Domaine.*;
 import Persistance.PersonneMapper;
 
@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings("serial")
-public class Inscription extends JPanel implements ActionListener  { 	
+public class InscriptionAdmin extends JPanel implements ActionListener  { 	
 	//Label et TextField
 	JLabel Description;
 	JLabel nomLabel;
@@ -26,7 +26,7 @@ public class Inscription extends JPanel implements ActionListener  {
     //Jbutton
     JButton Boutoninscription = new JButton("inscription");
     
-    public Inscription() throws Exception {
+    public InscriptionAdmin() throws Exception {
     	//Option du Panel
     	new JPanel(new FlowLayout());
     	this.setLayout(null);

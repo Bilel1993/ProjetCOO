@@ -1,4 +1,4 @@
-package Presentation;
+package Presentation.PageAdmin;
 import Persistance.PersonneMapper;
 import Domaine.Personne;
 import java.awt.event.ActionEvent;
@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings("serial")
-public class Suppression extends JPanel implements ActionListener  { 	
+public class SuppressionAdmin extends JPanel implements ActionListener  { 	
 	//Label et TextField
 	JLabel Description;
 	JLabel rechercherLabel;
@@ -18,8 +18,8 @@ public class Suppression extends JPanel implements ActionListener  {
     //Jbutton
     JButton Boutonrechercher = new JButton("Rechercher");
     JButton Boutonsupprimer = new JButton("Supprimer");
-    
-    public Suppression() throws Exception {
+   
+    public SuppressionAdmin() throws Exception {
     	//Option du Panel
     	new JPanel(new FlowLayout());
     	this.setLayout(null);

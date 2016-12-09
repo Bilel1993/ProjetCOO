@@ -1,4 +1,4 @@
-package Presentation;
+package Presentation.PageAdmin;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Domaine.Personne;
+import Presentation.Accueil;
+import Presentation.PageUtilisateur.*;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -111,7 +113,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 				if (e.getActionCommand().equals("Créer un compte"))
 					try {						
 						PDroite.removeAll();
-						PDroite.add(new Inscription());
+						PDroite.add(new InscriptionAdmin());
 						PDroite.validate();
 						PDroite.repaint();
 					} catch (Exception e1) {
@@ -122,7 +124,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 				if (e.getActionCommand().equals("Passer en Mode Chat"))
 					try {
 					PDroite.removeAll();
-					PDroite.add(new Chat());
+					PDroite.add(new ChatUtilisateur());
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {
@@ -133,7 +135,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 				if (e.getActionCommand().equals("Modifier un utilsateur"))
 					try {
 					PDroite.removeAll();
-					PDroite.add(new ChercherPersonne());
+					PDroite.add(new ChercherPersonneAdmin());
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {
@@ -145,7 +147,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 				if (e.getActionCommand().equals("Supprimer un compte"))
 					try {
 					PDroite.removeAll();
-					PDroite.add(new Suppression());
+					PDroite.add(new SuppressionAdmin());
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {
