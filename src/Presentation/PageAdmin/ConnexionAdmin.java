@@ -132,7 +132,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 					}
 				
 				//Si on clique sur Modifier un utilisateur
-				if (e.getActionCommand().equals("Modifier un utilsateur"))
+				if (e.getActionCommand().equals("Modifier un utilisateur"))
 					try {
 					PDroite.removeAll();
 					PDroite.add(new ChercherPersonneAdmin());
