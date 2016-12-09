@@ -64,8 +64,9 @@ public abstract class Personne implements IDomainObject{
 		return PasswordPers;
 	}
 
-	public void setPasswordPers(String passwordPers) {
-		PasswordPers = passwordPers;
+	public void setPasswordPers(char[] cs) {
+		String mdp =new String(cs);
+		PasswordPers = mdp;
 	}
 
 	public ArrayList<CentreInteret> getListeCentreInteretPers() {

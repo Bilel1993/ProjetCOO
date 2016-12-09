@@ -27,7 +27,11 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 	    JButton Chat = new JButton("Passer en Mode Chat");
         
 
-	    public ConnexionUtilisateur() throws Exception { 
+	    public ConnexionUtilisateur(Accueil idAccueil) throws Exception { 
+	    	
+	    	// On supprime completement la fenetre de connexion
+			idAccueil.dispose();
+			
 	    	//Panel
 	    	PUtilisateur=new JPanel(new FlowLayout());
 	    	PUtilisateur.setOpaque(true);
@@ -47,6 +51,7 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 	        this.setContentPane(PUtilisateur);
 	        this.setVisible(true);
+	        this.setLocationRelativeTo(null);
 	    }; 
 	    
 	   

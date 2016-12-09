@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Domaine.Personne;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
@@ -29,15 +31,25 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
     JButton Chat = new JButton("Passer en Mode Chat");
     JButton Modifier = new JButton("Modifier un utilsateur");
     JButton Suppression = new JButton("Supprimer un compte");
+    JButton Deconnexion = new JButton ("Deconnexion");
+    JLabel MessageBienvenue = new JLabel();
     
-    
-		    public ConnexionAdmin() throws Exception { 
+		    public ConnexionAdmin(Accueil idAccueil,Personne Admin) throws Exception { 
+		    	
+				// On supprime completement la fenetre de connexion
+				idAccueil.dispose();
+				
 		    	//JPanel Gauche
 		    	PGauche= new JPanel(new FlowLayout());
 		    	PGauche.setOpaque(true);
 		    	PGauche.setLayout(null);
 		    	PGauche.setBackground(Color.LIGHT_GRAY);
 		    	PGauche.setBorder(BorderFactory.createMatteBorder(0, 0, 0,2, Color.BLACK));
+		    	
+		    	//Message de bienvenue
+		    	MessageBienvenue= new JLabel("Bienvenue " + Admin.getNomComptePers() + " ! Que voulez vous faire ?", JLabel.CENTER);
+		    	MessageBienvenue.setSize(300,50);
+		    	MessageBienvenue.setLocation(100,10);
 
 		    	//Bouton Creation
 		    	Creation.setSize(150,25);
@@ -59,12 +71,23 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	Suppression.setLocation(260,170);
 		    	Suppression.addActionListener(this);
 		    	
-		    	//Ajout Bouton au panel
+	
+				// Bouton ANNULER
+				Deconnexion.setSize(120,50);
+				Deconnexion.setBorderPainted(false);
+				Deconnexion.setLocation(320, 350);
+				Deconnexion.setForeground(Color.red);
+				Deconnexion.addActionListener(this);
+
+		    	//Ajout Bouton au panel 
+				PGauche.add(MessageBienvenue);
 		    	PGauche.add(Chat);
 		    	PGauche.add(Creation);
 		    	PGauche.add(Modifier);
 		    	PGauche.add(Suppression);
-
+		    	PGauche.add(Deconnexion);
+		    	
+				
 		    	//Jpanel Droite
 		    	PDroite= new JPanel();
 		    	PDroite.setOpaque(true);
@@ -79,6 +102,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 				this.getContentPane().add(PGauche);
 				this.getContentPane().add(PDroite);
 		        this.setVisible(true);
+		        this.setLocationRelativeTo(null);
 		    }; 
 		    
 		   
@@ -127,6 +151,20 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
+				
+				//Si on veut se deconnecter
+				if (e.getActionCommand().equals("Deconnexion")) {
+					// On supprime la fenetre actuel
+					this.dispose();
+					try {
+						// On recree la fenetre d acceuil
+						Accueil fenetre = new Accueil();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
+
+				
 			}
 			
 }

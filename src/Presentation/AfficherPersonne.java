@@ -117,7 +117,7 @@ import Persistance.*;
 	            public void windowClosing(WindowEvent e) {
 	            	p.setNomPers(nom.getText());
 	            	p.setPrenomPers(prenom.getText());
-	            	p.setPasswordPers(motdepasse.getText());
+	            	p.setPasswordPers(motdepasse.getPassword());
 	    			UnitOfWork.getInstance().action(p);
 	            	UnitOfWork.getInstance().commit();
 	            }

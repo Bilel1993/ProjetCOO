@@ -120,9 +120,10 @@ import Persistance.PersonneMapper;
 						//on verifie l'existence d'une personne en BDD
 						if (PM.Exists(pseudo.getText(),motdepasse.getPassword()) > 0){
 							//On verifie si elle est admin ou non
-							if(PM.IsAdmin(pseudo.getText(),motdepasse.getPassword()) == 1)
-								connexionA = new ConnexionAdmin();
-							else{
+							if(PM.IsAdmin(pseudo.getText(),motdepasse.getPassword()) == 1){
+								Personne p = PM.FindByComptePers(pseudo.getText());
+								connexionA = new ConnexionAdmin(this,p);
+							}else{
 								Erreur.setText("Erreur, vous n'êtes pas Administrateur");
 								Erreur.setVisible(true);						
 							}	
@@ -138,7 +139,7 @@ import Persistance.PersonneMapper;
 					try {
 						//on verifie l'existence d'une personne en BDD
 						if (PM.Exists(pseudo.getText(),motdepasse.getPassword()) > 0)
-								 connexionU = new ConnexionUtilisateur();	
+								 connexionU = new ConnexionUtilisateur(this);	
 						else{
 							Erreur.setVisible(true);						
 						}				
