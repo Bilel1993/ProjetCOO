@@ -8,9 +8,9 @@ import Service.Visiteur;
  (en appelant le bon DataMapper en fonction de la classe) */
 
 public  class Committer extends Visiteur {
-		    public void visiter(Message m) throws SQLException {
-		    	/* ecrires fonction d'updates ici */
-		    }
+		    public void visiter(Groupe g) throws SQLException {
+		    	GroupeMapper.getInstance().insert(g);  
+		    }	
 		    public void visiter (Personne p) throws SQLException{
 		    	   PersonneMapper.getInstance().UpdatePersonne(p);
 		    }

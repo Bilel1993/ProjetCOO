@@ -15,7 +15,7 @@ import java.awt.*;
 
 @SuppressWarnings("serial")
 public class ChercherPersonneAdmin extends JPanel implements ActionListener  { 	
-	AfficherPersonneAdmin afficher;
+	//AfficherPersonneAdmin afficher;
 	JPanel HautChercher= new JPanel();
 	JPanel BasAfficher= new JPanel();
 	//Label et TextField
@@ -156,7 +156,7 @@ public class ChercherPersonneAdmin extends JPanel implements ActionListener  {
 
 
 	public void actionPerformed(ActionEvent e) {
-		PersonneMapper PM = new PersonneMapper();
+	/*	PersonneMapper PM = new PersonneMapper();
 		//Si on clique sur Chercher
 		if (e.getActionCommand().equals("Chercher"))
 			try {
@@ -186,7 +186,7 @@ public class ChercherPersonneAdmin extends JPanel implements ActionListener  {
 
 		}
 
-	}//Action performed
+	*/}//Action performed
 
 }//Inscription
 

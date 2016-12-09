@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Domaine.Personne;
+import Persistance.PersonneMapper;
 import Presentation.Accueil;
 import Presentation.PageUtilisateur.*;
 
@@ -28,9 +29,14 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 	JPanel PGauche ;   
 	//Jpanel Droit, qui affiche selon le bouton qu'on appuie
 	JPanel PDroite;
-    //Boutons d'actions
-    JButton Chat = new JButton("Passer en Mode Chat");
+    
+	//JLabel avec le Nom Compte Pers 
+	JLabel NomComptePers;
+
+	//Boutons d'actions
+	JButton Chat = new JButton("Passer en Mode Chat");
     JButton Deconnexion = new JButton ("Deconnexion");
+    JButton CreationGroupe = new JButton ("Creer un groupe");
     JLabel MessageBienvenue = new JLabel();
     
 		    public ConnexionUtilisateur(Accueil idAccueil,Personne utilisateur) throws Exception { 
@@ -45,18 +51,29 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 		    	PGauche.setBackground(Color.LIGHT_GRAY);
 		    	PGauche.setBorder(BorderFactory.createMatteBorder(0, 0, 0,2, Color.BLACK));
 		    	
+		    	
+		    	
 		    	//Message de bienvenue
 		    	MessageBienvenue= new JLabel("Bienvenue " + utilisateur.getPrenomPers() + " ! Que voulez vous faire ?", JLabel.CENTER);
 		    	MessageBienvenue.setSize(300,50);
 		    	MessageBienvenue.setLocation(100,10);
 		 
+		    	//NomComptePers
+		    	NomComptePers= new JLabel(utilisateur.getNomComptePers(),JLabel.CENTER);
+		    	NomComptePers.setText(utilisateur.getNomComptePers());
+		    	NomComptePers.setVisible(false);
 		    	
 		    	//Bouton Chat
 		    	Chat.setSize(170,25);
 		    	Chat.setLocation(260,110);
 		    	Chat.addActionListener(this);
-	
-				// Bouton ANNULER
+		    		
+		    	//Bouton Creer un groupe 
+		    	CreationGroupe.setSize(170,25);
+		    	CreationGroupe.setLocation(60,110);
+		    	CreationGroupe.addActionListener(this);
+				
+		    	// Bouton ANNULER
 				Deconnexion.setSize(120,50);
 				Deconnexion.setBorderPainted(false);
 				Deconnexion.setLocation(320, 350);
@@ -66,6 +83,7 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 		    	//Ajout Bouton au panel 
 				PGauche.add(MessageBienvenue);
 		    	PGauche.add(Chat);
+		    	PGauche.add(CreationGroupe);
 		    	PGauche.add(Deconnexion);
 		    	
 				
@@ -88,6 +106,7 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 		    
 		   
 			public void actionPerformed(ActionEvent e) {
+				PersonneMapper PM = new PersonneMapper();
 				//Si on clique sur Passer en mode Chat
 				if (e.getActionCommand().equals("Passer en Mode Chat"))
 					try {
@@ -98,7 +117,17 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
-				
+				//Si on clique sur creer un groupe
+				if (e.getActionCommand().equals("Creer un groupe"))
+					try {
+					PDroite.removeAll();
+					Personne p = PM.FindByComptePers(NomComptePers.getText());
+					PDroite.add(new CreerGroupeUtilasteur(p));
+					PDroite.validate();
+					PDroite.repaint();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				
 				//Si on veut se deconnecter
 				if (e.getActionCommand().equals("Deconnexion")) {

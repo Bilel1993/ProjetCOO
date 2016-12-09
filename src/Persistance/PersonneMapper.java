@@ -103,6 +103,14 @@ public class PersonneMapper {
 		ps.executeUpdate();
 			}
 	
+	//mettre le champ moderateur a 1 
+		public void isModerateur(Personne p)  throws SQLException {
+			String req = "UPDATE Personne SET isModerateur= ? WHERE NomComptePers=?";
+			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setInt(1,1);
+			ps.setString(2,p.getNomComptePers());
+			ps.executeUpdate();
+				}
 	
 
 }
