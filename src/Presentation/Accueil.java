@@ -140,9 +140,10 @@ import Presentation.PageUtilisateur.*;
 				if (e.getActionCommand().equals("Mode Utilisateur"))
 					try {
 						//on verifie l'existence d'une personne en BDD
-						if (PM.Exists(pseudo.getText(),motdepasse.getPassword()) > 0)
-								 connexionU = new ConnexionUtilisateur(this);	
-						else{
+						if (PM.Exists(pseudo.getText(),motdepasse.getPassword()) > 0){
+							Personne u = PM.FindByComptePers(pseudo.getText());
+								 connexionU = new ConnexionUtilisateur(this,u);	
+						}else{
 							Erreur.setVisible(true);						
 						}				
 					}catch (Exception e1) {

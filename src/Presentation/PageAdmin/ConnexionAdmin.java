@@ -31,7 +31,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
     //Boutons d'actions
     JButton Creation = new JButton("Créer un compte");
     JButton Chat = new JButton("Passer en Mode Chat");
-    JButton Modifier = new JButton("Modifier un utilsateur");
+    JButton Modifier = new JButton("Modifier un utilisateur");
     JButton Suppression = new JButton("Supprimer un compte");
     JButton Deconnexion = new JButton ("Deconnexion");
     JLabel MessageBienvenue = new JLabel();
