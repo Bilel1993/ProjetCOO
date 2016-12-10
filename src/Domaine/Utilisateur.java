@@ -7,5 +7,14 @@ public class Utilisateur extends Personne  {
 		super(nomComptePers, nomPers, prenomPers, passwordPers);
 	}
 
+	public Utilisateur() {
+		super();
+	}
 
+	public Utilisateur(String nomComptePers, String nomPers, String prenomPers,
+			char[] passwordPers) {
+		super(nomComptePers, nomPers, prenomPers, passwordPers);
+	}
+
+	
 }

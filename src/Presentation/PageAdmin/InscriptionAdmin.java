@@ -50,9 +50,9 @@ public class InscriptionAdmin extends JPanel implements ActionListener  {
     	nom.setLocation(200,87);
     	
     	//Prenom
-    	prenomLabel = new JLabel("Prenom ",JLabel.CENTER);
-    	prenomLabel.setSize(100,100);
-    	prenomLabel.setLocation(30,80);
+    	prenomLabel = new JLabel("Prenom :",JLabel.CENTER);
+    	prenomLabel.setSize(100,25);
+    	prenomLabel.setLocation(30,127);
     	prenom = new JTextField(); 
     	prenom.setColumns(20);
     	prenom.setSize(150,25);

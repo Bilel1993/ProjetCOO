@@ -30,7 +30,6 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 	JPanel PDroite;
     //Boutons d'actions
     JButton Creation = new JButton("Créer un compte");
-    JButton Chat = new JButton("Passer en Mode Chat");
     JButton Modifier = new JButton("Modifier un utilisateur");
     JButton Suppression = new JButton("Supprimer un compte");
     JButton Deconnexion = new JButton ("Deconnexion");
@@ -57,11 +56,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	Creation.setSize(150,25);
 		    	Creation.setLocation(60,110);
 		    	Creation.addActionListener(this);
-		    	
-		    	//Bouton Chat
-		    	Chat.setSize(170,25);
-		    	Chat.setLocation(260,110);
-		    	Chat.addActionListener(this);
+		    
 		    	
 		    	//Bouton Modifier
 		    	Modifier.setSize(170,25);
@@ -83,7 +78,6 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 
 		    	//Ajout Bouton au panel 
 				PGauche.add(MessageBienvenue);
-		    	PGauche.add(Chat);
 		    	PGauche.add(Creation);
 		    	PGauche.add(Modifier);
 		    	PGauche.add(Suppression);
@@ -120,22 +114,12 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 						e1.printStackTrace();
 					}
 				
-				//Si on clique sur Passer en mode Chat
-				if (e.getActionCommand().equals("Passer en Mode Chat"))
-					try {
-					PDroite.removeAll();
-					PDroite.add(new ChatUtilisateur());
-					PDroite.validate();
-					PDroite.repaint();
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
 				
 				//Si on clique sur Modifier un utilisateur
 				if (e.getActionCommand().equals("Modifier un utilisateur"))
 					try {
 					PDroite.removeAll();
-					PDroite.add(new ChercherPersonneAdmin());
+					PDroite.add(new ModifierCompteAdmin());
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {

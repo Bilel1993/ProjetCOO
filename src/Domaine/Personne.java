@@ -35,6 +35,17 @@ public abstract class Personne implements IDomainObject{
 		PrenomPers = prenomPers;
 		PasswordPers = passwordPers;
 	}
+	
+	public Personne(String nomComptePers, String nomPers, String prenomPers,
+			char[] passwordPers) {
+		NomComptePers = nomComptePers;
+		NomPers = nomPers;
+		PrenomPers = prenomPers;
+		String pw = new String(passwordPers);
+		PasswordPers = pw;
+	}
+
+	public Personne() {}
 
 	public String getNomComptePers() {
 		return NomComptePers;

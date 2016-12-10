@@ -117,12 +117,13 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
+				
 				//Si on clique sur creer un groupe
 				if (e.getActionCommand().equals("Creer un groupe"))
 					try {
 					PDroite.removeAll();
 					Personne p = PM.FindByComptePers(NomComptePers.getText());
-					PDroite.add(new CreerGroupeUtilasteur(p));
+					PDroite.add(new CreerGroupeUtilisateur(p));
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {
