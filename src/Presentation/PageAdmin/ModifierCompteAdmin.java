@@ -144,7 +144,7 @@ public class ModifierCompteAdmin extends JPanel implements ActionListener  {
 		message = new JLabel("",JLabel.CENTER);
 		message.setForeground(Color.blue);
 		message.setSize(350,25);
-		message.setLocation(75,150);
+		message.setLocation(95,150);
 		message.setVisible(false);
 
 		//Panel BasAfficher
@@ -205,14 +205,21 @@ public class ModifierCompteAdmin extends JPanel implements ActionListener  {
 			try {
 				if (pseudo.getText().equals(Precherche.getNomComptePers())){
 					if (PM.IsExistNomComptePers(Precherche.getNomComptePers()) > 0 ){
-						Personne PersonneModifie = new Utilisateur(pseudoBas.getText(),nom.getText(),prenom.getText(),motdepasse.getPassword());
-						UnitOfWork.getInstance().action(PersonneModifie);
-						UnitOfWork.getInstance().commit();
-						message.setText("l'utilisateur a été modifié !");
-						message.setForeground(Color.blue);
-						message.setVisible(true);
+						//Si le pseudo existe déjà: erreur
+						if (PM.IsExistNomComptePers(pseudoBas.getText()) > 0 ){
+							message.setText("Erreur, ce pseudonyme est deja pris !");
+							message.setForeground(Color.red);
+							message.setVisible(true);
+						}else{
+							Personne PersonneModifie = new Utilisateur(pseudoBas.getText(),nom.getText(),prenom.getText(),motdepasse.getPassword());
+							UnitOfWork.getInstance().action(PersonneModifie);
+							UnitOfWork.getInstance().commit();
+							message.setText("L'utilisateur a été modifié !");
+							message.setForeground(Color.blue);
+							message.setVisible(true);
+						}
 					}else{
-						message.setText("Erreur, le compte n'existe plus !");
+						message.setText("Erreur, le compte n'existe pas !");
 						message.setForeground(Color.red);
 						message.setVisible(true);
 					}
@@ -220,7 +227,7 @@ public class ModifierCompteAdmin extends JPanel implements ActionListener  {
 					message.setText("Vous avez changer la recherche, veuillez le rechercher à nouveau !");
 					message.setForeground(Color.red);
 					message.setVisible(true);
-				}	
+				}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
