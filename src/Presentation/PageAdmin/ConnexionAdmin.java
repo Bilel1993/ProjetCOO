@@ -73,8 +73,8 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	Suppression.addActionListener(this);
 		    	
 		    	//Bouton Passer en mode Utilisateur
-		    	PasserUtilisateur.setSize(120,50);
-		    	PasserUtilisateur.setLocation(90, 350);
+		    	PasserUtilisateur.setSize(200,50);
+		    	PasserUtilisateur.setLocation(40, 350);
 		    	PasserUtilisateur.addActionListener(this);
 		    	
 		    	

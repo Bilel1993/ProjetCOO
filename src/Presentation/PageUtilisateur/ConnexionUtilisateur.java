@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import Domaine.Personne;
 import Persistance.PersonneMapper;
 import Presentation.Accueil;
+import Presentation.PageAdmin.ModifierCompteAdmin;
 import Presentation.PageUtilisateur.*;
 
 import java.awt.Color;
@@ -36,11 +37,13 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 	//Boutons d'actions
 	JButton Chat = new JButton("Passer en Mode Chat");
     JButton Deconnexion = new JButton ("Deconnexion");
+    JButton Modifier = new JButton("Modifier son Compte");
     JButton CreationGroupe = new JButton ("Creer un groupe");
     JLabel MessageBienvenue = new JLabel();
+    Personne Utilisateur;
     
 		    public ConnexionUtilisateur(Personne utilisateur) throws Exception { 
-		
+		    	Utilisateur = utilisateur;
 		    	//JPanel Gauche
 		    	PGauche= new JPanel(new FlowLayout());
 		    	PGauche.setOpaque(true);
@@ -48,7 +51,10 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 		    	PGauche.setBackground(Color.LIGHT_GRAY);
 		    	PGauche.setBorder(BorderFactory.createMatteBorder(0, 0, 0,2, Color.BLACK));
 		    	
-		    	
+		    	//Bouton Modifier
+		    	Modifier.setSize(170,25);
+		    	Modifier.setLocation(60,170);
+		    	Modifier.addActionListener(this);
 		    	
 		    	//Message de bienvenue
 		    	MessageBienvenue= new JLabel("Bienvenue " + utilisateur.getPrenomPers() + " ! Que voulez vous faire ?", JLabel.CENTER);
@@ -82,6 +88,7 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 		    	PGauche.add(Chat);
 		    	PGauche.add(CreationGroupe);
 		    	PGauche.add(Deconnexion);
+		    	PGauche.add(Modifier);
 		    	
 				
 		    	//Jpanel Droite
@@ -109,6 +116,17 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 					try {
 					PDroite.removeAll();
 					PDroite.add(new ChatUtilisateur());
+					PDroite.validate();
+					PDroite.repaint();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				
+				//Si on clique sur "Modifier son Compte"
+				if (e.getActionCommand().equals("Modifier son Compte"))
+					try {
+					PDroite.removeAll();
+					PDroite.add(new ModifierCompteUtilisateur(Utilisateur));
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {
