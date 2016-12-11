@@ -69,7 +69,7 @@ public class ModifierCompteUtilisateur extends JPanel implements ActionListener 
 
 		//Bouton Modifier
 		BoutonModifier.setSize(150,25);
-		BoutonModifier.setLocation(200,160);
+		BoutonModifier.setLocation(200,260);
 		BoutonModifier.addActionListener(this);
 		BoutonModifier.setVisible(true);
 
@@ -77,8 +77,8 @@ public class ModifierCompteUtilisateur extends JPanel implements ActionListener 
 		//Ajout d un message  Non visible pour le moment
 		message = new JLabel("",JLabel.CENTER);
 		message.setForeground(Color.blue);
-		message.setSize(350,25);
-		message.setLocation(75,200);
+		message.setSize(350,60);
+		message.setLocation(75,300);
 		message.setVisible(false);
 
 		//JPanel ajouts
@@ -117,10 +117,9 @@ public class ModifierCompteUtilisateur extends JPanel implements ActionListener 
 						Personne PersonneModifie = new Utilisateur(Utilisateur.getNomComptePers(),nom.getText(),prenom.getText(),motdepasse.getPassword());
 						UnitOfWork.getInstance().action(PersonneModifie);
 						UnitOfWork.getInstance().commit();
-						message.setText("Modifié avec succès!");
+						message.setText("<html>Modifié avec succès! <br> Veuillez vous deconnectez pour prendre en compte ces modifications </html>");
 						message.setForeground(Color.blue);
 						message.setVisible(true);
-						
 				}
 		}
 
