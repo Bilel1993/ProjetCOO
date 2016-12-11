@@ -124,7 +124,8 @@ import Presentation.PageUtilisateur.*;
 							//On verifie si elle est admin ou non
 							if(PM.IsAdmin(pseudo.getText(),motdepasse.getPassword()) == 1){
 								Personne p = PM.FindByComptePers(pseudo.getText());
-								connexionA = new ConnexionAdmin(this,p);
+								connexionA = new ConnexionAdmin(p);
+								this.dispose();
 							}else{
 								Erreur.setText("Erreur, vous n'êtes pas Administrateur");
 								Erreur.setVisible(true);						
@@ -142,7 +143,8 @@ import Presentation.PageUtilisateur.*;
 						//on verifie l'existence d'une personne en BDD
 						if (PM.Exists(pseudo.getText(),motdepasse.getPassword()) > 0){
 							Personne u = PM.FindByComptePers(pseudo.getText());
-								 connexionU = new ConnexionUtilisateur(this,u);	
+								 connexionU = new ConnexionUtilisateur(u);
+								 this.dispose();
 						}else{
 							Erreur.setVisible(true);						
 						}				

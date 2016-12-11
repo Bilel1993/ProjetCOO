@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Domaine.Administrateur;
 import Domaine.Personne;
 import Presentation.Accueil;
 import Presentation.PageUtilisateur.*;
@@ -33,12 +34,15 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
     JButton Modifier = new JButton("Modifier un utilisateur");
     JButton Suppression = new JButton("Supprimer un compte");
     JButton Deconnexion = new JButton ("Deconnexion");
+    JButton PasserUtilisateur = new JButton ("Passer en mode Utilisateur");
     JLabel MessageBienvenue = new JLabel();
+    Personne Admin;
     
-		    public ConnexionAdmin(Accueil idAccueil,Personne Admin) throws Exception { 
+		    public ConnexionAdmin(Personne PConnecte) throws Exception { 
 		    	
-				// On supprime completement la fenetre de connexion
-				idAccueil.dispose();
+				
+				// On enregistre la personne connecté 
+				Admin = new Administrateur(PConnecte);
 				
 		    	//JPanel Gauche
 		    	PGauche= new JPanel(new FlowLayout());
@@ -48,7 +52,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	PGauche.setBorder(BorderFactory.createMatteBorder(0, 0, 0,2, Color.BLACK));
 		    	
 		    	//Message de bienvenue
-		    	MessageBienvenue= new JLabel("Bienvenue " + Admin.getNomComptePers() + " ! Que voulez vous faire ?", JLabel.CENTER);
+		    	MessageBienvenue= new JLabel("Bienvenue " + PConnecte.getNomComptePers() + " ! Que voulez vous faire ?", JLabel.CENTER);
 		    	MessageBienvenue.setSize(300,50);
 		    	MessageBienvenue.setLocation(100,10);
 
@@ -68,6 +72,12 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	Suppression.setLocation(260,170);
 		    	Suppression.addActionListener(this);
 		    	
+		    	//Bouton Passer en mode Utilisateur
+		    	PasserUtilisateur.setSize(120,50);
+		    	PasserUtilisateur.setLocation(90, 350);
+		    	PasserUtilisateur.addActionListener(this);
+		    	
+		    	
 	
 				// Bouton ANNULER
 				Deconnexion.setSize(120,50);
@@ -82,6 +92,7 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 		    	PGauche.add(Modifier);
 		    	PGauche.add(Suppression);
 		    	PGauche.add(Deconnexion);
+		    	PGauche.add(PasserUtilisateur);
 		    	
 				
 		    	//Jpanel Droite
@@ -149,6 +160,17 @@ public class ConnexionAdmin extends JFrame implements ActionListener  {
 						e1.printStackTrace();
 					}
 				}
+				
+				
+				//Si on veut passer en mode Utilisateur
+				if (e.getActionCommand().equals("Passer en mode Utilisateur"))
+					try {
+						this.dispose();
+						ConnexionUtilisateur connexionU = new ConnexionUtilisateur(Admin);	
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				
 
 				
 			}

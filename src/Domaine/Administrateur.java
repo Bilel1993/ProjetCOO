@@ -9,6 +9,17 @@ public class Administrateur extends Personne {
 	}
 		
 	
+	public Administrateur(Personne pConnecte) {
+		this.PrenomPers=pConnecte.PrenomPers;
+		this.NomComptePers = pConnecte.NomComptePers;
+		this.NomPers = pConnecte.NomPers;
+		this.PasswordPers = pConnecte.PasswordPers;
+		this.ListeAmisPers = pConnecte.ListeAmisPers;
+		this.ListeCentreInteretPers = pConnecte.ListeCentreInteretPers;
+		
+	}
+
+
 	public Personne create(String nomComptePers, String nomPers,
 			String prenomPers, String passwordPers){
 		Personne p =new Utilisateur (nomComptePers,nomPers,

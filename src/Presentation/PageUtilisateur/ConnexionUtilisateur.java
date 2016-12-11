@@ -39,11 +39,8 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
     JButton CreationGroupe = new JButton ("Creer un groupe");
     JLabel MessageBienvenue = new JLabel();
     
-		    public ConnexionUtilisateur(Accueil idAccueil,Personne utilisateur) throws Exception { 
-		    	
-				// On supprime completement la fenetre de connexion
-				idAccueil.dispose();
-				
+		    public ConnexionUtilisateur(Personne utilisateur) throws Exception { 
+		
 		    	//JPanel Gauche
 		    	PGauche= new JPanel(new FlowLayout());
 		    	PGauche.setOpaque(true);

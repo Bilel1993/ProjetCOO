@@ -4,7 +4,6 @@ import Persistance.PersonneMapper;
 import Persistance.UnitOfWork;
 import Domaine.Groupe;
 import Domaine.Personne;
-import Domaine.Utilisateur;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 
 @SuppressWarnings("serial")
-public class CreerGroupeUtilasteur extends JPanel implements ActionListener  { 	
+public class CreerGroupeUtilisateur extends JPanel implements ActionListener  { 	
 	//Label et TextField
 	Groupe groupe;
 	JLabel CeerGroupe;
@@ -25,7 +24,7 @@ public class CreerGroupeUtilasteur extends JPanel implements ActionListener  {
     JButton Boutonvalider = new JButton("Valider");
     
     
-    public CreerGroupeUtilasteur(Personne utilsateur)throws Exception {
+    public CreerGroupeUtilisateur(Personne utilsateur)throws Exception {
       	//Option du Panel
     	new JPanel(new FlowLayout());
     	this.setLayout(null);
@@ -74,6 +73,7 @@ public class CreerGroupeUtilasteur extends JPanel implements ActionListener  {
       }; 
 
 	public void actionPerformed(ActionEvent e) {
+		@SuppressWarnings("unused")
 		PersonneMapper PM = new PersonneMapper();
 		GroupeMapper GP = new GroupeMapper();
 		// nom goupe prend le contenu du JTextField
