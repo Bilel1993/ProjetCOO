@@ -34,11 +34,15 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 	//JLabel avec le Nom Compte Pers 
 	JLabel NomComptePers;
 
+	//Notification
+	Circle notif:
 	//Boutons d'actions
 	JButton Chat = new JButton("Passer en Mode Chat");
     JButton Deconnexion = new JButton ("Deconnexion");
     JButton Modifier = new JButton("Modifier son Compte");
     JButton CreationGroupe = new JButton ("Creer un groupe");
+	JButton AjouterAmi = new JButton("Ajouter un ami");
+
     JLabel MessageBienvenue = new JLabel();
     Personne Utilisateur;
     
@@ -82,13 +86,20 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 				Deconnexion.setLocation(320, 350);
 				Deconnexion.setForeground(Color.red);
 				Deconnexion.addActionListener(this);
-
+				
+				//Bouton Ajouter un ami 
+				AjouterAmi.setSize(170,25);
+				AjouterAmi.setLocation(260,170);
+				AjouterAmi.addActionListener(this);
+		    	
+		    	
 		    	//Ajout Bouton au panel 
 				PGauche.add(MessageBienvenue);
 		    	PGauche.add(Chat);
 		    	PGauche.add(CreationGroupe);
 		    	PGauche.add(Deconnexion);
 		    	PGauche.add(Modifier);
+		    	PGauche.add(AjouterAmi);
 		    	
 				
 		    	//Jpanel Droite
@@ -139,6 +150,17 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 					PDroite.removeAll();
 					Personne p = PM.FindByComptePers(NomComptePers.getText());
 					PDroite.add(new CreerGroupeUtilisateur(p));
+					PDroite.validate();
+					PDroite.repaint();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				
+				if (e.getActionCommand().equals("Ajouter un ami"))
+					try {
+					PDroite.removeAll();
+					Personne p = PM.FindByComptePers(NomComptePers.getText());
+					PDroite.add(new AjouterUnAmi(p));
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {
