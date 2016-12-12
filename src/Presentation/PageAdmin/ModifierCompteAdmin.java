@@ -203,20 +203,39 @@ public class ModifierCompteAdmin extends JPanel implements ActionListener  {
 		//Si on clique sur Modifier
 		if (e.getActionCommand().equals("Modifier")){
 			try {
+				System.out.println(pseudoBas.getText() + nom.getText() + prenom.getText());
 				if (pseudo.getText().equals(Precherche.getNomComptePers())){
 					if (PM.IsExistNomComptePers(Precherche.getNomComptePers()) > 0 ){
-						//Si le pseudo existe déjà: erreur
+						//Si le pseudo existe
 						if (PM.IsExistNomComptePers(pseudoBas.getText()) > 0 ){
-							message.setText("Erreur, ce pseudonyme est deja pris !");
-							message.setForeground(Color.red);
-							message.setVisible(true);
+							//si le pseudo reste inchangé: on met à jour seulement le nom, prenom et le mot de passe
+							if((pseudo.getText()).equals(pseudoBas.getText())){
+								Personne PersonneModifie =PM.FindByComptePers(pseudo.getText());
+								PM.UpdatePersonne(PersonneModifie);
+								UnitOfWork.getInstance().action(PersonneModifie);
+								UnitOfWork.getInstance().commit();
+								message.setText("L'utilisateur a été modifié !");
+								message.setForeground(Color.blue);
+								message.setVisible(true);
+								System.out.println(pseudoBas.getText() + nom.getText() + prenom.getText());
+							}else{
+								message.setText("Erreur, ce pseudonyme est deja pris !");
+								message.setForeground(Color.red);
+								message.setVisible(true);
+								System.out.println(pseudoBas.getText() + nom.getText() + prenom.getText());
+							}
 						}else{
-							Personne PersonneModifie = new Utilisateur(pseudoBas.getText(),nom.getText(),prenom.getText(),motdepasse.getPassword());
-							UnitOfWork.getInstance().action(PersonneModifie);
-							UnitOfWork.getInstance().commit();
-							message.setText("L'utilisateur a été modifié !");
-							message.setForeground(Color.blue);
-							message.setVisible(true);
+							//si le pseudo est change: on met tout à jour
+							if(!(pseudo.getText()).equals(pseudoBas.getText())){
+								Personne PersonneModifie =PM.FindByComptePers(pseudo.getText());
+								PM.UpdateAdmin(PersonneModifie);
+								UnitOfWork.getInstance().action(PersonneModifie);
+								UnitOfWork.getInstance().commit();
+								message.setText("L'utilisateur a été modifié !");
+								message.setForeground(Color.blue);
+								message.setVisible(true);
+								System.out.println(pseudoBas.getText() + nom.getText() + prenom.getText());
+							}
 						}
 					}else{
 						message.setText("Erreur, le compte n'existe pas !");
