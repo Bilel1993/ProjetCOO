@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import Domaine.Personne;
 import Domaine.Utilisateur;
+import Persistance.PersonneMapper;
 import Persistance.UnitOfWork;
 
 import java.awt.*;
@@ -120,9 +121,9 @@ public class ModifierCompteUtilisateur extends JPanel implements ActionListener 
 						message.setText("<html> Modifié avec succès! </br> Fermez la fenêtre pour prendre en compte le changement </html>");
 						message.setForeground(Color.blue);
 						message.setVisible(true);
-						
 				}
 		}
+		
 
 	}//Action performed
 
