@@ -1,15 +1,12 @@
 package Presentation.PageUtilisateur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.*;
 
 import Domaine.Personne;
-import Domaine.Utilisateur;
 import Persistance.DemandeAmiMapper;
 import Persistance.PersonneMapper;
-import Persistance.UnitOfWork;
 
 import java.awt.*;
 
@@ -32,10 +29,10 @@ public class AjouterUnAmi extends JPanel implements ActionListener  {
 
 	//Label et TextField BAS
 	JLabel nomLabel;
-	JTextField nom;
+	JLabel nom;
 
 	JLabel prenomLabel;
-	JTextField prenom;
+	JLabel prenom;
 	
 	//message d'erreur
 	JLabel message;
@@ -103,8 +100,7 @@ public class AjouterUnAmi extends JPanel implements ActionListener  {
 		nomLabel = new JLabel("Nom :",JLabel.CENTER);
 		nomLabel.setSize(100,25);
 		nomLabel.setLocation(30,0);
-		nom = new JTextField(); 
-		nom.setColumns(20);
+		nom = new JLabel(); 
 		nom.setSize(150,25);
 		nom.setLocation(200,0);
 
@@ -112,14 +108,13 @@ public class AjouterUnAmi extends JPanel implements ActionListener  {
 		prenomLabel = new JLabel("Prenom :",JLabel.CENTER);
 		prenomLabel.setSize(100,25);
 		prenomLabel.setLocation(30,30);
-		prenom = new JTextField(); 
-		prenom.setColumns(20);
+		prenom = new JLabel(); 
 		prenom.setSize(150,25);
 		prenom.setLocation(200,30);
 
 		//Bouton Modifier
 		BoutonAjouter.setSize(150,25);
-		BoutonAjouter.setLocation(200,125);
+		BoutonAjouter.setLocation(200,100);
 		BoutonAjouter.addActionListener(this);
 		BoutonAjouter.setVisible(true);
 
@@ -128,14 +123,14 @@ public class AjouterUnAmi extends JPanel implements ActionListener  {
 		message = new JLabel("Vous avez déjà envoyez une demande a cette personne",JLabel.CENTER);
 		message.setForeground(Color.red);
 		message.setSize(350,25);
-		message.setLocation(100,170);
+		message.setLocation(100,140);
 		message.setVisible(false);
 		
 		//Ajout d un message  Non visible pour le moment
 		messageAmis = new JLabel("Vous êtes déjà ami avec cette personne ",JLabel.CENTER);
 		messageAmis.setForeground(Color.red);
 		messageAmis.setSize(350,25);
-		messageAmis.setLocation(100,170);
+		messageAmis.setLocation(100,140);
 		messageAmis.setVisible(false);
 
 		//Panel BasAfficher

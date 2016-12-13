@@ -117,7 +117,7 @@ public class ModifierCompteUtilisateur extends JPanel implements ActionListener 
 						Personne PersonneModifie = new Utilisateur(Utilisateur.getNomComptePers(),nom.getText(),prenom.getText(),motdepasse.getPassword());
 						UnitOfWork.getInstance().action(PersonneModifie);
 						UnitOfWork.getInstance().commit();
-						message.setText("Modifié avec succès!");
+						message.setText("<html> Modifié avec succès! </br> Fermez la fenêtre pour prendre en compte le changement </html>");
 						message.setForeground(Color.blue);
 						message.setVisible(true);
 						

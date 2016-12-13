@@ -1,7 +1,6 @@
 package Presentation.PageUtilisateur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -10,11 +9,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Domaine.Personne;
-import Domaine.Utilisateur;
 import Persistance.AmisMapper;
-import Persistance.DemandeAmiMapper;
 import Persistance.PersonneMapper;
-import Persistance.UnitOfWork;
 import java.awt.*;
 
 @SuppressWarnings("serial")

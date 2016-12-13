@@ -41,7 +41,7 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
     JButton Modifier = new JButton("Modifier son Compte");
     JButton CreationGroupe = new JButton ("Creer un groupe");
 	JButton AjouterAmi = new JButton("Ajouter un ami");
-	JButton RepondreDemande = new JButton ("Rpondre aux demandes");
+	JButton RepondreDemande = new JButton ("Repondre aux demandes");
 
     JLabel MessageBienvenue = new JLabel();
     Personne Utilisateur;
@@ -173,7 +173,7 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 						e1.printStackTrace();
 					}
 				
-				if (e.getActionCommand().equals("Rpondre aux demandes"))
+				if (e.getActionCommand().equals("Repondre aux demandes"))
 					try {
 					PDroite.removeAll();
 					Personne p = PM.FindByComptePers(NomComptePers.getText());
