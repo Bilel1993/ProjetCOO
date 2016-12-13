@@ -36,8 +36,10 @@ public class AjouterUnAmi extends JPanel implements ActionListener  {
 
 	JLabel prenomLabel;
 	JTextField prenom;
-
+	
+	//message d'erreur
 	JLabel message;
+	JLabel messageAmis;
 
 	JLabel PseudoLabelBas;
 	JTextField pseudoBas;
@@ -128,6 +130,13 @@ public class AjouterUnAmi extends JPanel implements ActionListener  {
 		message.setSize(350,25);
 		message.setLocation(100,170);
 		message.setVisible(false);
+		
+		//Ajout d un message  Non visible pour le moment
+		messageAmis = new JLabel("Vous êtes déjà ami avec cette personne ",JLabel.CENTER);
+		messageAmis.setForeground(Color.red);
+		messageAmis.setSize(350,25);
+		messageAmis.setLocation(100,170);
+		messageAmis.setVisible(false);
 
 		//Panel BasAfficher
 		BasAfficher.add(nomLabel);
@@ -136,6 +145,7 @@ public class AjouterUnAmi extends JPanel implements ActionListener  {
 		BasAfficher.add(prenom);
 		BasAfficher.add(BoutonAjouter);
 		BasAfficher.add(message);
+		BasAfficher.add(messageAmis);
 		BasAfficher.setVisible(false);
 		BasAfficher.setLayout(null);
 		BasAfficher.setOpaque(true);
@@ -190,11 +200,20 @@ public class AjouterUnAmi extends JPanel implements ActionListener  {
 				Putilisateur= PM.FindByComptePers(NomComptePers.getText());
 
 	//on verifie que l'utilsateur n'a pas déjà envoyer une demande a la même personne et que cette personne n'a pas encore répondu  
-				if (DM.IsDemande(Putilisateur,Precherche)> 0){
+				if (DM.IsAmis(Putilisateur,Precherche) == 0){
+					System.out.println("je suis la ");
 					message.setVisible(true);
-				}else{
+				}else if (DM.IsAmis(Precherche,Putilisateur) == 0) {
+					
+					message.setText("vous avez une demande d'ami de cette personne");
+					message.setVisible(true);
+				}else if ((DM.IsAmis(Putilisateur,Precherche) == 1) || (DM.IsAmis(Precherche,Putilisateur) == 1)) {
+					 messageAmis.setVisible(true);
+					 	
+				}else {
 					DM.insert(Putilisateur,Precherche);
-				}
+					 }
+				
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

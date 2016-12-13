@@ -35,13 +35,13 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 	JLabel NomComptePers;
 
 	//Notification
-	Circle notif:
 	//Boutons d'actions
-	JButton Chat = new JButton("Passer en Mode Chat");
+	JButton Chat = new JButton("Envoyez un message");
     JButton Deconnexion = new JButton ("Deconnexion");
     JButton Modifier = new JButton("Modifier son Compte");
     JButton CreationGroupe = new JButton ("Creer un groupe");
 	JButton AjouterAmi = new JButton("Ajouter un ami");
+	JButton RepondreDemande = new JButton ("Rpondre aux demandes");
 
     JLabel MessageBienvenue = new JLabel();
     Personne Utilisateur;
@@ -92,6 +92,11 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 				AjouterAmi.setLocation(260,170);
 				AjouterAmi.addActionListener(this);
 		    	
+				//Buton Repondre aux demandes 
+				RepondreDemande.setSize(170,25);
+				RepondreDemande.setLocation(60,230);
+				RepondreDemande.addActionListener(this);
+
 		    	
 		    	//Ajout Bouton au panel 
 				PGauche.add(MessageBienvenue);
@@ -100,6 +105,7 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 		    	PGauche.add(Deconnexion);
 		    	PGauche.add(Modifier);
 		    	PGauche.add(AjouterAmi);
+		    	PGauche.add(RepondreDemande);
 		    	
 				
 		    	//Jpanel Droite
@@ -123,10 +129,10 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 			public void actionPerformed(ActionEvent e) {
 				PersonneMapper PM = new PersonneMapper();
 				//Si on clique sur Passer en mode Chat
-				if (e.getActionCommand().equals("Passer en Mode Chat"))
+				if (e.getActionCommand().equals("Envoyez un message"))
 					try {
 					PDroite.removeAll();
-					PDroite.add(new ChatUtilisateur());
+					PDroite.add(new EnvoyerUnMessage(Utilisateur));
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {
@@ -166,6 +172,18 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
+				
+				if (e.getActionCommand().equals("Rpondre aux demandes"))
+					try {
+					PDroite.removeAll();
+					Personne p = PM.FindByComptePers(NomComptePers.getText());
+					PDroite.add(new AccepterDemande(p));
+					PDroite.validate();
+					PDroite.repaint();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				
 				
 				//Si on veut se deconnecter
 				if (e.getActionCommand().equals("Deconnexion")) {

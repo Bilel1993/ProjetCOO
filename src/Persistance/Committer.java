@@ -13,9 +13,7 @@ public  class Committer extends Visiteur {
 		    }	
 		    public void visiter (Personne p) throws SQLException{
 		    	   PersonneMapper.getInstance().UpdatePersonne(p);
-		    	   PersonneMapper.getInstance().UpdateAdmin(p);
 		    }
-		    
 }
 
 
