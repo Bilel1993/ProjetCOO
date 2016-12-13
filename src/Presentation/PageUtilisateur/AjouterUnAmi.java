@@ -196,7 +196,6 @@ public class AjouterUnAmi extends JPanel implements ActionListener  {
 
 	//on verifie que l'utilsateur n'a pas déjà envoyer une demande a la même personne et que cette personne n'a pas encore répondu  
 				if (DM.IsAmis(Putilisateur,Precherche) == 0){
-					System.out.println("je suis la ");
 					message.setVisible(true);
 				}else if (DM.IsAmis(Precherche,Putilisateur) == 0) {
 					

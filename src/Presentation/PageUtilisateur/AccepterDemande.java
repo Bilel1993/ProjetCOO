@@ -81,7 +81,7 @@ public class AccepterDemande  extends JPanel implements ActionListener, ListSele
 		Erreur = new JLabel("Veuillez selectionner une personne ",JLabel.CENTER);
 		Erreur.setForeground(Color.RED);
 		Erreur.setSize(250,25);
-		Erreur.setLocation(150,300);
+		Erreur.setLocation(150,400);
 		Erreur.setVisible(false);
 		
 		//ajouter le model a la liste 
@@ -119,7 +119,8 @@ public class AccepterDemande  extends JPanel implements ActionListener, ListSele
 			Erreur.setVisible(true);
 		
 		if (e.getActionCommand().equals("Accepter"))
-			if ((NomComptePersSend.getText().length()==0)) Erreur.setVisible(true);
+			if ((NomComptePersSend.getText().length()==0)) 
+				Erreur.setVisible(true);
 			else 
 			try {
 					

@@ -85,5 +85,18 @@ public class AmisMapper{
 			ps.executeUpdate();
 		}
 
+		//SUPPRIMER UN AMIS
+		public void DeleteAmis(Personne p1,Personne p2) throws SQLException{
+			String req  = "DELETE FROM Amis WHERE (Pers_Send = ? AND Pers_Receive = ?) "
+					+ "OR (Pers_Send = ? AND Pers_Receive = ?)";
+			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setString(1, p1.getNomComptePers());
+			ps.setString(2, p2.getNomComptePers());
+			ps.setString(3, p2.getNomComptePers());
+			ps.setString(4, p1.getNomComptePers());
+			ps.executeUpdate();
+			System.out.println("Supprimé !");
+		}
+		
 
 }

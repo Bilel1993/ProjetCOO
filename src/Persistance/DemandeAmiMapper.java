@@ -89,4 +89,16 @@ public class DemandeAmiMapper{
 			else return 99; // 99 = la table elle est encore vide rs est empty 
 			}
 		
+		//Supprimer une demande lors de la suppression d'un ami
+		public void deleteAMI(Personne Send ,Personne Receive) throws SQLException {
+			String req = "DELETE FROM DemandeAmis WHERE (Pers_Demande = ? "
+					+ "AND Pers_Receive =?) OR (Pers_Demande = ? AND Pers_Receive = ?)";
+			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setString(1, Send.getNomComptePers());
+			ps.setString(2, Receive.getNomComptePers());
+			ps.setString(3, Receive.getNomComptePers());
+			ps.setString(4, Send.getNomComptePers());
+			ps.executeUpdate();
+		}
+		
 }
