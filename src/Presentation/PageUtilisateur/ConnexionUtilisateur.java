@@ -43,6 +43,8 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 	JButton AjouterAmi = new JButton("Ajouter un ami");
 	JButton SupprimerAmi = new JButton("Supprimer un ami");
 	JButton RepondreDemande = new JButton ("Repondre aux demandes");
+	JButton EnvoyerDemandeGroupe = new JButton ("Ajouter un ami a un groupe");
+	
 
     JLabel MessageBienvenue = new JLabel();
     Personne Utilisateur;
@@ -103,6 +105,12 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 				SupprimerAmi.setSize(175,25);
 				SupprimerAmi.setLocation(260,230);
 				SupprimerAmi.addActionListener(this);
+				
+				//Boutton supprimer un ami
+				EnvoyerDemandeGroupe.setSize(200,25);
+				EnvoyerDemandeGroupe.setLocation(60,290);
+				EnvoyerDemandeGroupe.addActionListener(this);
+				
 
 		    	
 		    	//Ajout Bouton au panel 
@@ -114,6 +122,7 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 		    	PGauche.add(AjouterAmi);
 		    	PGauche.add(RepondreDemande);
 		    	PGauche.add(SupprimerAmi);
+		    	PGauche.add(EnvoyerDemandeGroupe);
 		    	
 				
 		    	//Jpanel Droite
@@ -197,6 +206,16 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 					PDroite.removeAll();
 					Personne p = PM.FindByComptePers(NomComptePers.getText());
 					PDroite.add(new AccepterDemande(p));
+					PDroite.validate();
+					PDroite.repaint();
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				if (e.getActionCommand().equals("Ajouter un ami a un groupe"))
+					try {
+					PDroite.removeAll();
+					Personne p = PM.FindByComptePers(NomComptePers.getText());
+					PDroite.add(new AjouterAmisGroupe(p));
 					PDroite.validate();
 					PDroite.repaint();
 					} catch (Exception e1) {

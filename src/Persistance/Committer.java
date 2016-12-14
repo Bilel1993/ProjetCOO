@@ -9,7 +9,7 @@ import Service.Visiteur;
 
 public  class Committer extends Visiteur {
 		    public void visiter(Groupe g) throws SQLException {
-		    //	GroupeMapper.getInstance().insert(g);  
+		    GroupeMapper.getInstance().insert(g);  
 		    }	
 		    public void visiter (Personne p) throws SQLException{
 		    	   PersonneMapper.getInstance().UpdatePersonne(p);

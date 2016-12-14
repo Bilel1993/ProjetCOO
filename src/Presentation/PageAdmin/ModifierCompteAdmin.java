@@ -228,7 +228,7 @@ public class ModifierCompteAdmin extends JPanel implements ActionListener  {
 							//si le pseudo est change: on met tout à jour
 							if(!(pseudo.getText()).equals(pseudoBas.getText())){
 								Personne PersonneModifie =PM.FindByComptePers(pseudo.getText());
-								PM.UpdateAdmin(PersonneModifie);
+							//	PM.UpdateAdmin(PersonneModifie);
 								UnitOfWork.getInstance().action(PersonneModifie);
 								UnitOfWork.getInstance().commit();
 								message.setText("L'utilisateur a été modifié !");

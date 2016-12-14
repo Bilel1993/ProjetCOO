@@ -1,5 +1,7 @@
 package Persistance;
 import java.sql.*;
+import java.util.ArrayList;
+
 import Domaine.*;
 
 	public class GroupeMapper{
@@ -42,10 +44,35 @@ import Domaine.*;
 		}
 		
 		
+		//Verifier si un gorupe existe
+		public  ArrayList <String>GroupePers(Personne p1) throws SQLException{
+			ArrayList <String> groupe = new ArrayList<String>();
+			String req ="Select NomGroupe from Groupe where NomComptePers= ?";
+			PreparedStatement ps=DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setString(1,p1.getNomComptePers());
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				
+				groupe.add(rs.getString(1));
+			}
+			return groupe;
+			
+		}
 		
 		
 		
-		
+		//Retourner l'id du groupe
+		public int IdGroupe(Personne p,String nomGroupe) throws SQLException{
+			String req ="Select ID_Groupe from Groupe where NomGroupe= ? AND "
+					+ "NomComptePers=?";
+			PreparedStatement ps=DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setString(1,nomGroupe);
+			ps.setString(2,p.getNomComptePers());
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return rs.getInt(1);	
+			
+		}
 		
 		
 			
