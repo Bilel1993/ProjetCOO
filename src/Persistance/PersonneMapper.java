@@ -24,10 +24,10 @@ public class PersonneMapper {
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		return rs.getInt(1);	
-		
-		
+
+
 	}
-	
+
 
 	// Inserer une personne dans la Base de donnees
 	public void insert(Personne p) throws SQLException {
@@ -41,15 +41,15 @@ public class PersonneMapper {
 		ps.setBoolean(6,false);
 		ps.executeUpdate();
 	}
-			
+
 	// Supprimer une personne de la BDD
 	public void delete(Personne p) throws SQLException {
 		String req = "DELETE FROM Personne WHERE NomComptePers = ?";
-			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
-			ps.setString(1, p.getNomComptePers());
-			ps.executeUpdate();
-		}
-	
+		PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+		ps.setString(1, p.getNomComptePers());
+		ps.executeUpdate();
+	}
+
 	// Verifie si une personne se connecte avec des identifiants présent en BDD
 	public int Exists(String NomCompte , char[] cs) throws SQLException {
 		String req = "SELECT count(*) FROM Personne WHERE NomComptePers =? and PasswordPers=?";
@@ -62,7 +62,7 @@ public class PersonneMapper {
 		rs.next();
 		return rs.getInt(1);	
 	}
-     
+
 	//Verifie si l'administrateur est admin ou non ; Renvoie 0 si non , 1 si oui
 	public int IsAdmin(String NomCompte , char[] cs) throws SQLException {
 		String req = "SELECT isAdmin FROM Personne WHERE NomComptePers =? and PasswordPers=?";
@@ -75,9 +75,9 @@ public class PersonneMapper {
 		rs.next();
 		return rs.getInt(1);	
 	}
-	
-	
-	
+
+
+
 	//Retourner une personne a partir de son compte Personnel 
 	public Personne FindByComptePers(String ComptePers) throws SQLException {
 		String req = "SELECT NomPers,PrenomPers,PasswordPers FROM Personne WHERE "
@@ -89,8 +89,8 @@ public class PersonneMapper {
 		Personne p =new Utilisateur(ComptePers,rs.getString(1),rs.getString(2),rs.getString(3));
 		return p;
 	}
-	
-	
+
+
 	//modifier le nom , Prenom et mot de passe d'une personne 
 	public void UpdatePersonne(Personne p)  throws SQLException {
 		String req = "UPDATE Personne SET NomPers= ? , PrenomPers =? ,PasswordPers =? "
@@ -101,17 +101,30 @@ public class PersonneMapper {
 		ps.setString(3,p.getPasswordPers());
 		ps.setString(4,p.getNomComptePers());
 		ps.executeUpdate();
-			}
-	
+	}
+
+	//modifier le nom , Prenom et mot de passe d'une personne 
+	public void UpdateAdmin(Personne p)  throws SQLException {
+		String req = "UPDATE Personne SET NomComptePers=?, NomPers= ? , PrenomPers =? ,PasswordPers =? "
+				+ "WHERE NomComptePers=?";
+		PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+		ps.setString(1,p.getNomComptePers());
+		ps.setString(2,p.getNomPers());
+		ps.setString(3,p.getPrenomPers());
+		ps.setString(4,p.getPasswordPers());
+		ps.setString(5,p.getNomComptePers());
+		ps.executeUpdate();
+	}
+
 	//mettre le champ moderateur a 1 
-		public void isModerateur(Personne p)  throws SQLException {
-			String req = "UPDATE Personne SET isModerateur= ? WHERE NomComptePers=?";
-			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
-			ps.setInt(1,1);
-			ps.setString(2,p.getNomComptePers());
-			ps.executeUpdate();
-				}
-	
+	public void isModerateur(Personne p)  throws SQLException {
+		String req = "UPDATE Personne SET isModerateur= ? WHERE NomComptePers=?";
+		PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+		ps.setInt(1,1);
+		ps.setString(2,p.getNomComptePers());
+		ps.executeUpdate();
+	}
+
 
 }
 
