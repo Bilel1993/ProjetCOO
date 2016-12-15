@@ -6,7 +6,6 @@ import javax.swing.*;
 
 import Domaine.Personne;
 import Domaine.Utilisateur;
-import Persistance.PersonneMapper;
 import Persistance.UnitOfWork;
 
 import java.awt.*;

@@ -1,8 +1,5 @@
 package Presentation.PageAdmin;
 
-
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -10,7 +7,6 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 import Domaine.Personne;
-import Domaine.Utilisateur;
 import Persistance.PersonneMapper;
 import Persistance.UnitOfWork;
 
