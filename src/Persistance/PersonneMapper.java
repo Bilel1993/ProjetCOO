@@ -104,7 +104,7 @@ public class PersonneMapper {
 	}
 
 	//modifier le nom , Prenom et mot de passe d'une personne 
-	public void UpdateAdmin(Personne p)  throws SQLException {
+	public void UpdateAdmin(Personne p, String pseudo)  throws SQLException {
 		String req = "UPDATE Personne SET NomComptePers=?, NomPers= ? , PrenomPers =? ,PasswordPers =? "
 				+ "WHERE NomComptePers=?";
 		PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
@@ -112,7 +112,7 @@ public class PersonneMapper {
 		ps.setString(2,p.getNomPers());
 		ps.setString(3,p.getPrenomPers());
 		ps.setString(4,p.getPasswordPers());
-		ps.setString(5,p.getNomComptePers());
+		ps.setString(5,pseudo);
 		ps.executeUpdate();
 	}
 
