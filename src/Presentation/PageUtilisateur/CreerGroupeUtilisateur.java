@@ -1,4 +1,5 @@
 package Presentation.PageUtilisateur;
+import Persistance.GroupeChatMapper;
 import Persistance.GroupeMapper;
 import Persistance.PersonneMapper;
 import Persistance.UnitOfWork;
@@ -76,6 +77,7 @@ public class CreerGroupeUtilisateur extends JPanel implements ActionListener  {
 		@SuppressWarnings("unused")
 		PersonneMapper PM = new PersonneMapper();
 		GroupeMapper GP = new GroupeMapper();
+		GroupeChatMapper GCM= new GroupeChatMapper();
 		// nom goupe prend le contenu du JTextField
 		groupe.setNomGroupe(Nom.getText());
 		UnitOfWork.getInstance().action(groupe);
@@ -84,8 +86,9 @@ public class CreerGroupeUtilisateur extends JPanel implements ActionListener  {
 			try{ //si le groupe n'existe pas 
 				if (GP.IsExistNomComptePers(Nom.getText()) == 0){
 					UnitOfWork.getInstance().commit();
+					GCM.insert(groupe.getNomGroupe(),groupe.getModerateurGroupe());
 					
-
+				
 				}
 				
 				else {

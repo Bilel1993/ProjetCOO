@@ -61,7 +61,7 @@ import Domaine.*;
 		
 		
 		
-		//Retourner l'id du groupe
+		//Retourner l'id du groupe a partir de la personne qui l'a creer et le nom du groupe
 		public int IdGroupe(Personne p,String nomGroupe) throws SQLException{
 			String req ="Select ID_Groupe from Groupe where NomGroupe= ? AND "
 					+ "NomComptePers=?";
@@ -75,6 +75,39 @@ import Domaine.*;
 		}
 		
 		
+		//Retourner l'id du groupe a partir du nom 
+		public int FindByNomGroupe(String nomGroupe) throws SQLException{
+			String req ="Select ID_Groupe from Groupe where NomGroupe= ? ";
+			PreparedStatement ps=DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setString(1,nomGroupe);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return rs.getInt(1);	
+			
+		}
+		
+		
+		//Retourner le nom du groupe  a partir d'un id 
+		public String FindById(int id) throws SQLException{
+			String req ="Select NomGroupe from Groupe where ID_Groupe= ? ";
+			PreparedStatement ps=DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setInt(1,id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return rs.getString(1);	
+			
+		}
+		
+		//Retourner le nom du groupe  a partir d'un id 
+		public String FindModerateur(String nomGroupe) throws SQLException{
+			String req ="Select NomComptePers from Groupe where NomGroupe= ? ";
+			PreparedStatement ps=DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setString(1,nomGroupe);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			return rs.getString(1);	
+			
+		}
 			
 	}
 

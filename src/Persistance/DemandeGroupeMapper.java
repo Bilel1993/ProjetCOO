@@ -1,5 +1,7 @@
 package Persistance;
 import java.sql.*;
+import java.util.ArrayList;
+
 import Domaine.*;
 
 
@@ -34,7 +36,57 @@ import Domaine.*;
 			return rs.getInt(1);	
 			}
 
+		//Renvoyer les demandes recu par l'utilisateur passé en parametre 
+		public ArrayList <String> FindDemandeGroupe(Personne p) throws SQLException {
+			GroupeMapper GP = new GroupeMapper();
+			ArrayList <String> groupe= new ArrayList<String>();
+			String req = "SELECT ID_Groupe FROM  DemandeGroupe WHERE Pers_Receive= ? "
+					+ "AND Decision=0";
+			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setString(1, p.getNomComptePers());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				String g = GP.FindById(rs.getInt(1));
+				groupe.add(g);
+			}
+			return groupe;
+		}		
 
+		//Supprimer une demande si la personne refuse 
+		public void delete(int id,Personne Receive) throws SQLException {
+			String req = "DELETE FROM DemandeGroupe WHERE ID_Groupe = ? "
+					+ "AND Pers_Receive =?";
+			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setInt(1,id);
+			ps.setString(2, Receive.getNomComptePers());
+			ps.executeUpdate();
+		}
+		
+		
+		//mettre a jour le champ Decision si l'utilisateur accepte la demande 
+		public void UpdateDecison(int id,Personne Receive)throws SQLException {
+			String req = "UPDATE DemandeGroupe SET Decision= ? WHERE  ID_Groupe= ? "
+					+ "AND Pers_Receive =?";
+			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setInt(1,1);
+			ps.setInt(2,id);
+			ps.setString(3,Receive.getNomComptePers());
+			ps.executeUpdate();
+		}
 
-	
+		//Renvoyer les groupes de l'utilisateur passé en parametre 
+		public ArrayList <String> FindGroupe(Personne p) throws SQLException {
+			GroupeMapper GP = new GroupeMapper();
+			ArrayList <String> groupe= new ArrayList<String>();
+			String req = "SELECT ID_Groupe FROM  DemandeGroupe WHERE Pers_Receive= ? "
+					+ "AND Decision=1";
+			PreparedStatement ps = DBConfig.getInstance().getConn().prepareStatement(req);
+			ps.setString(1, p.getNomComptePers());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				String g = GP.FindById(rs.getInt(1));
+				groupe.add(g);
+			}
+			return groupe;
+		}	
 }
