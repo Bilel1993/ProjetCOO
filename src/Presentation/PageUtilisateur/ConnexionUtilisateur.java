@@ -98,8 +98,8 @@ public class ConnexionUtilisateur extends JFrame implements ActionListener  {
 				
 		    	
 				//Buton Repondre aux demandes 
-				RepondreDemande.setSize(175,25);
-				RepondreDemande.setLocation(60,230);
+				RepondreDemande.setSize(205,25);
+				RepondreDemande.setLocation(40,230);
 				RepondreDemande.addActionListener(this);
 				
 				//Boutton supprimer un ami

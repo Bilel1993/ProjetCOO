@@ -93,7 +93,7 @@ public class CreerGroupeUtilisateur extends JPanel implements ActionListener  {
 				
 				else {
 					//si le groupe existe
-					Message.setText("Compte deja existant :) ");
+					Message.setText("Groupe deja existant :) ");
 				 	Message.setForeground(Color.red);
 			    	Message.setSize(300,25);
 			    	Message.setLocation(190,340);
