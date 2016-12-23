@@ -22,9 +22,10 @@ class DBConfig{
 	public Connection getConn(){
 		if(conn == null){
 			try{
-				String url = "jdbc:mysql://webtp.fil.univ-lille1.fr/aloui";
-				String user= "aloui";
-				String passwd="qz6fnwhy";
+				/*METTRE VOS IDENTIFIANTS ICI */
+				String url = "";
+				String user= "";
+				String passwd="";
 				conn = DriverManager.getConnection(url,user,passwd);
 				return conn;
 			} catch (Exception e){
